@@ -22,3 +22,28 @@
   </tbody>
 </table>
 <button (click)="getUsers()">All users</button>
+<button (click)="saveUser()">Create user</button>
+
+
+
+
+
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+  <p>
+    <label for="name">Nombre</label>
+    <input type="text" name="nombre" #name="ngModel" [(ngModel)]="usuarioInsertar.nombre" required />
+    <span class="form_error" *ngIf="name.touched && !name.valid">
+      El nombre es obligatorio
+    </span>
+  </p>
+
+  <p>
+    <label for="category">Categoría</label>
+    <input type="text" name="apellido" #category="ngModel" [(ngModel)]="usuarioInsertar.apellido" required />
+    <span class="form_error" *ngIf="category.touched && !category.valid">
+      La categoría es obligatoria
+    </span>
+  </p>
+
+  <input type="submit" value="Enviar" [disabled]="!userForm.form.valid" />
+</form>

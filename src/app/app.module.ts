@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { routing, appRoutingProviders } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { UserComponent } from './components/user/user.component';
@@ -23,7 +24,8 @@ import { FooterComponent } from './components/footer/footer.component';
   imports: [
     BrowserModule,
     routing,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     appRoutingProviders

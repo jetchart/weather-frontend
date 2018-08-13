@@ -21,7 +21,7 @@ export class UserService{
         return this.http.get(this.url + 'usuarios');
     }*/
 
-    saveUser(user: User): Observable<any>{
+    saveUser(user: Usuario): Observable<any>{
   		let params = JSON.stringify(user);
   		let headers = new HttpHeaders().set('Content-Type','application/json');
 

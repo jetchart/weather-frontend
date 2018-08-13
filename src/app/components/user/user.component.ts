@@ -11,9 +11,11 @@ export class UserComponent implements OnInit{
   public titulo : String;
   public nombre : String;
   public usuarios:Usuario[];
+  public usuarioInsertar : Usuario;
   constructor(public userService: UserService,
               private _router: Router){
     this.titulo = "Usuarios";
+    this.usuarioInsertar = new Usuario();
   }
 
   ngOnInit(){
@@ -36,6 +38,27 @@ export class UserComponent implements OnInit{
           console.log(<any>error);
       }
     };
+
+    onSubmit(form){
+      this.saveUser();
+      form.reset();
+    };
+
+    saveUser() {
+      this.userService.saveUser(this.usuarioInsertar).subscribe(
+        result => {
+            /*if(result.code != 200){
+                console.log(result);
+            }else{
+                this.nombre = result.data[0].nombre;
+            }*/
+            console.log(result);
+            this.getUsers();
+        },
+        error => {
+            console.log(<any>error);
+        }
+      };
 
     deleteUser(id){
     	this.userService.deleteUser(id).subscribe(

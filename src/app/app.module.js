@@ -9,6 +9,7 @@ exports.__esModule = true;
 var platform_browser_1 = require("@angular/platform-browser");
 var core_1 = require("@angular/core");
 var app_routing_1 = require("./app.routing");
+var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/common/http");
 var app_component_1 = require("./app.component");
 var user_component_1 = require("./components/user/user.component");
@@ -32,7 +33,8 @@ var AppModule = /** @class */ (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 app_routing_1.routing,
-                http_1.HttpClientModule
+                http_1.HttpClientModule,
+                forms_1.FormsModule
             ],
             providers: [
                 app_routing_1.appRoutingProviders
