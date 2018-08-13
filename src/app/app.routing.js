@@ -2,13 +2,15 @@
 exports.__esModule = true;
 var router_1 = require("@angular/router");
 //Components
-var user_component_1 = require("./components/user/user.component");
+var users_component_1 = require("./components/users/users.component");
+var form_user_component_1 = require("./components/form_user/form_user.component");
 var city_component_1 = require("./components/city/city.component");
 var index_component_1 = require("./components/index/index.component");
 //Routes array
 var appRoutes = [
     { path: '', component: index_component_1.IndexComponent },
-    { path: 'user', component: user_component_1.UserComponent },
+    { path: 'users', component: users_component_1.UsersComponent },
+    { path: 'form_user/:id', component: form_user_component_1.FormUserComponent },
     { path: 'city', component: city_component_1.CityComponent },
     { path: 'index', component: index_component_1.IndexComponent }
 ];

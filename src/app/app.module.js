@@ -12,7 +12,8 @@ var app_routing_1 = require("./app.routing");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/common/http");
 var app_component_1 = require("./app.component");
-var user_component_1 = require("./components/user/user.component");
+var users_component_1 = require("./components/users/users.component");
+var form_user_component_1 = require("./components/form_user/form_user.component");
 var city_component_1 = require("./components/city/city.component");
 var index_component_1 = require("./components/index/index.component");
 var header_component_1 = require("./components/header/header.component");
@@ -24,7 +25,8 @@ var AppModule = /** @class */ (function () {
         core_1.NgModule({
             declarations: [
                 app_component_1.AppComponent,
-                user_component_1.UserComponent,
+                users_component_1.UsersComponent,
+                form_user_component_1.FormUserComponent,
                 city_component_1.CityComponent,
                 index_component_1.IndexComponent,
                 header_component_1.HeaderComponent,

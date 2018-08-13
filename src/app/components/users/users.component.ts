@@ -1,30 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "./user.service";
-import {Usuario} from "./usuario.ts";
+import {UsersService} from "./users.service";
+import { User } from "./user";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-  selector: 'user',
-  templateUrl: './user.component.html'
+  selector: 'users',
+  templateUrl: './users.component.html'
 })
-export class UserComponent implements OnInit{
+export class UsersComponent implements OnInit{
   public titulo : String;
   public nombre : String;
-  public usuarios:Usuario[];
-  public usuarioInsertar : Usuario;
-  constructor(public userService: UserService,
-              private _router: Router){
+  public users : User[];
+  public userInsertar : User;
+  constructor(public _usersService: UsersService,
+              public _router: Router){
     this.titulo = "Usuarios";
-    this.usuarioInsertar = new Usuario();
+    this.userInsertar = new User();
   }
 
   ngOnInit(){
     console.log ('ngOnInit ejecutado');
     this.getUsers();
-  }
+  };
 
   getUsers() {
-    this.userService.getUsers().subscribe(
+    this._usersService.getUsers().subscribe(
       result => {
           /*if(result.code != 200){
               console.log(result);
@@ -32,11 +32,11 @@ export class UserComponent implements OnInit{
               this.nombre = result.data[0].nombre;
           }*/
           console.log(result);
-          this.usuarios = result;
+          this.users = result;
       },
       error => {
           console.log(<any>error);
-      }
+      });
     };
 
     onSubmit(form){
@@ -45,7 +45,7 @@ export class UserComponent implements OnInit{
     };
 
     saveUser() {
-      this.userService.saveUser(this.usuarioInsertar).subscribe(
+      this._usersService.saveUser(this.userInsertar).subscribe(
         result => {
             /*if(result.code != 200){
                 console.log(result);
@@ -57,11 +57,15 @@ export class UserComponent implements OnInit{
         },
         error => {
             console.log(<any>error);
-        }
+        });
+      };
+
+      updateUser(id) {
+        this._router.navigate(["/form_user", id]);
       };
 
     deleteUser(id){
-    	this.userService.deleteUser(id).subscribe(
+    	this._usersService.deleteUser(id).subscribe(
     		response => {
             console.log('eliminado');
       			this.getUsers();
@@ -73,5 +77,3 @@ export class UserComponent implements OnInit{
     };
 
   }
-
-}
