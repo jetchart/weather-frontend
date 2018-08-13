@@ -7,72 +7,67 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 var core_1 = require("@angular/core");
-var user_1 = require("./user");
-var UsersComponent = /** @class */ (function () {
-    function UsersComponent(_usersService, _router) {
-        this._usersService = _usersService;
+var location_1 = require("./location");
+var LocationsComponent = /** @class */ (function () {
+    function LocationsComponent(_locationsService, _router) {
+        this._locationsService = _locationsService;
         this._router = _router;
-        this.titulo = "Users";
-        this.userInsertar = new user_1.User();
+        this.titulo = "Locations";
+        this.locationInsertar = new location_1.Location();
     }
-    UsersComponent.prototype.ngOnInit = function () {
+    LocationsComponent.prototype.ngOnInit = function () {
         console.log('ngOnInit ejecutado');
-        this.getUsers();
+        this.getLocations();
     };
     ;
-    UsersComponent.prototype.ngOnDestroy = function () {
+    LocationsComponent.prototype.ngOnDestroy = function () {
     };
     ;
-    UsersComponent.prototype.getUsers = function () {
+    LocationsComponent.prototype.getLocations = function () {
         var _this = this;
-        this._usersService.getUsers().subscribe(function (result) {
+        this._locationsService.getLocations().subscribe(function (result) {
+            console.log(result);
+            _this.locations = result;
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    ;
+    LocationsComponent.prototype.saveLocation = function () {
+        var _this = this;
+        this._locationsService.saveLocation(this.locationInsertar).subscribe(function (result) {
             /*if(result.code != 200){
                 console.log(result);
             }else{
                 this.nombre = result.data[0].nombre;
             }*/
             console.log(result);
-            _this.users = result;
+            _this.getLocations();
         }, function (error) {
             console.log(error);
         });
     };
     ;
-    UsersComponent.prototype.saveUser = function () {
-        var _this = this;
-        this._usersService.saveUser(this.userInsertar).subscribe(function (result) {
-            /*if(result.code != 200){
-                console.log(result);
-            }else{
-                this.nombre = result.data[0].nombre;
-            }*/
-            console.log(result);
-            _this.getUsers();
-        }, function (error) {
-            console.log(error);
-        });
+    LocationsComponent.prototype.updateLocation = function (id) {
+        this._router.navigate(["/form_location", id]);
     };
     ;
-    UsersComponent.prototype.updateUser = function (id) {
-        this._router.navigate(["/form_user", id]);
-    };
-    ;
-    UsersComponent.prototype.deleteUser = function (id) {
+    LocationsComponent.prototype.deleteLocation = function (id) {
         var _this = this;
-        this._usersService.deleteUser(id).subscribe(function (response) {
+        this._locationsService.deleteLocation(id).subscribe(function (response) {
             console.log('eliminado');
-            _this.getUsers();
+            _this.getLocations();
         }, function (error) {
             console.log(error);
         });
     };
     ;
-    UsersComponent = __decorate([
+    LocationsComponent = __decorate([
         core_1.Component({
-            selector: 'users',
-            templateUrl: './users.component.html'
+            selector: 'locations',
+            templateUrl: './locations.component.html'
         })
-    ], UsersComponent);
-    return UsersComponent;
+    ], LocationsComponent);
+    return LocationsComponent;
 }());
-exports.UsersComponent = UsersComponent;
+exports.LocationsComponent = LocationsComponent;

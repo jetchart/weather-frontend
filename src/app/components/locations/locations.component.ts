@@ -1,50 +1,45 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {UsersService} from "./users.service";
-import { User } from "./user";
+import {LocationsService} from "./locations.service";
+import { Location } from "./location";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-  selector: 'users',
-  templateUrl: './users.component.html'
+  selector: 'locations',
+  templateUrl: './locations.component.html'
 })
-export class UsersComponent implements OnInit, OnDestroy{
+export class LocationsComponent implements OnInit, OnDestroy{
   public titulo : String;
   public nombre : String;
-  public users : User[];
-  public userInsertar : User;
-  constructor(public _usersService: UsersService,
+  public locations : Location[];
+  public locationInsertar : Location;
+  constructor(public _locationsService: LocationsService,
               public _router: Router){
-    this.titulo = "Users";
-    this.userInsertar = new User();
+    this.titulo = "Locations";
+    this.locationInsertar = new Location();
   }
 
   ngOnInit(){
     console.log ('ngOnInit ejecutado');
-    this.getUsers();
+    this.getLocations();
   };
 
   ngOnDestroy(){
 
   };
 
-  getUsers() {
-    this._usersService.getUsers().subscribe(
+  getLocations() {
+    this._locationsService.getLocations().subscribe(
       result => {
-          /*if(result.code != 200){
-              console.log(result);
-          }else{
-              this.nombre = result.data[0].nombre;
-          }*/
           console.log(result);
-          this.users = result;
+          this.locations = result;
       },
       error => {
           console.log(<any>error);
       });
     };
 
-    saveUser() {
-      this._usersService.saveUser(this.userInsertar).subscribe(
+    saveLocation() {
+      this._locationsService.saveLocation(this.locationInsertar).subscribe(
         result => {
             /*if(result.code != 200){
                 console.log(result);
@@ -52,22 +47,22 @@ export class UsersComponent implements OnInit, OnDestroy{
                 this.nombre = result.data[0].nombre;
             }*/
             console.log(result);
-            this.getUsers();
+            this.getLocations();
         },
         error => {
             console.log(<any>error);
         });
       };
 
-      updateUser(id) {
-        this._router.navigate(["/form_user", id]);
+      updateLocation(id) {
+        this._router.navigate(["/form_location", id]);
       };
 
-    deleteUser(id){
-    	this._usersService.deleteUser(id).subscribe(
+    deleteLocation(id){
+    	this._locationsService.deleteLocation(id).subscribe(
     		response => {
             console.log('eliminado');
-      			this.getUsers();
+      			this.getLocations();
     		},
     		error => {
     			console.log(<any>error);

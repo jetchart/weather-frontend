@@ -1,5 +1,5 @@
 <h1>{{titulo}}</h1>
-<table class="table table-dark">
+<table class="table table-striped table-dark">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -11,15 +11,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users">
+    <tr *ngFor="let user of users" >
       <td>{{user.id}}</td>
       <td>{{user.nombre}}</td>
       <td>{{user.apellido}}</td>
       <td>{{user.username}}</td>
       <td>{{user.createAt}}</td>
-      <td><button class="btn btn-light" (click)="updateUser(user.id)">Editar</button> | <button class="btn btn-light"(click)="deleteUser(user.id)">Eliminar</button></td>
+      <td><button class="btn btn-light" (click)="updateUser(user.id)">Editar</button> &nbsp; <button class="btn btn-light"(click)="deleteUser(user.id)">Eliminar</button></td>
     </tr>
   </tbody>
 </table>
 <button (click)="getUsers()">Refrescar</button>
-<a class="nav-link" routerLink="/user_new/0">Agregar usuario</a>
+<a class="nav-link" routerLink="/form_user/0">Agregar usuario</a>

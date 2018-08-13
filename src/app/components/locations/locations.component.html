@@ -1,0 +1,23 @@
+<h1>{{titulo}}</h1>
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Woeid</th>
+      <th scope="col">Fecha alta</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let location of locations" >
+      <td>{{location.id}}</td>
+      <td>{{location.nombre}}</td>
+      <td>{{location.woeid}}</td>
+      <td>{{location.createAt}}</td>
+      <td><button class="btn btn-light" (click)="updateLocation(location.id)">Editar</button> &nbsp; <button class="btn btn-light"(click)="deleteLocation(location.id)">Eliminar</button></td>
+    </tr>
+  </tbody>
+</table>
+<button (click)="getLocations()">Refrescar</button>
+<a class="nav-link" routerLink="/form_location/0">Agregar location</a>

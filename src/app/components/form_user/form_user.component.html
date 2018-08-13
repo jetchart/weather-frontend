@@ -1,9 +1,11 @@
 <h1>{{titulo}}</h1>
 
 <form class="form-group" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+
+
   <p>
     <label for="nombre">Nombre</label>
-    <input class="form-control" type="text" name="nombre" #nombre="ngModel" [(ngModel)]="userInsertar.nombre" required />
+    <input flex class="form-control" type="text" name="nombre" #nombre="ngModel" [(ngModel)]="userInsertar.nombre" required />
     <span class="form_error" *ngIf="nombre.touched && !nombre.valid">
       El nombre es obligatorio
     </span>

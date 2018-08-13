@@ -16,40 +16,30 @@ export class UsersService{
         this.url = 'http://localhost:8080/api/';
     }
 
-
-    /*getUsers(): Observable<User>{
-        return this.http.get(this.url + 'users');
-    }*/
-
     saveUser(user: User): Observable<any>{
   		let params = JSON.stringify(user);
   		let headers = new HttpHeaders().set('Content-Type','application/json');
-
   		return this.http.post(this.url+'users', params, {headers: headers});
   	}
 
   	getUsers(): Observable<any>{
   		let headers = new HttpHeaders().set('Content-Type', 'application/json');
-
   		return this.http.get(this.url+'users', {headers: headers});
   	}
 
   	getUser(id): Observable<any>{
   		let headers = new HttpHeaders().set('Content-Type', 'application/json');
-
   		return this.http.get(this.url+'users/'+id, {headers: headers});
   	}
 
   	deleteUser(id): Observable<any>{
   		let headers = new HttpHeaders().set('Content-Type', 'application/json');
-
   		return this.http.delete(this.url+'users/'+id, {headers: headers});
   	}
 
   	updateUser(user): Observable<any>{
   		let params = JSON.stringify(user);
   		let headers = new HttpHeaders().set('Content-Type', 'application/json');
-
   		return this.http.put(this.url+'users/'+user.id, params, {headers: headers});
   	}
 

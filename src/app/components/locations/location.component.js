@@ -12,7 +12,7 @@ var UsersComponent = /** @class */ (function () {
     function UsersComponent(_usersService, _router) {
         this._usersService = _usersService;
         this._router = _router;
-        this.titulo = "Users";
+        this.titulo = "Usuarios";
         this.userInsertar = new user_1.User();
     }
     UsersComponent.prototype.ngOnInit = function () {
@@ -36,6 +36,11 @@ var UsersComponent = /** @class */ (function () {
         }, function (error) {
             console.log(error);
         });
+    };
+    ;
+    UsersComponent.prototype.onSubmit = function (form) {
+        this.saveUser();
+        form.reset();
     };
     ;
     UsersComponent.prototype.saveUser = function () {

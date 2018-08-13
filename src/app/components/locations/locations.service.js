@@ -8,42 +8,39 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
-//import { User } from '../models/user';
-var UserService = /** @class */ (function () {
-    function UserService(http) {
+//import { Location } from '../models/location';
+var LocationsService = /** @class */ (function () {
+    function LocationsService(http) {
         this.http = http;
         this.url = 'http://localhost:8080/api/';
     }
-    /*getUsers(): Observable<Usuario>{
-        return this.http.get(this.url + 'usuarios');
-    }*/
-    UserService.prototype.saveUser = function (user) {
-        var params = JSON.stringify(user);
+    LocationsService.prototype.saveLocation = function (location) {
+        var params = JSON.stringify(location);
         var headers = new http_1.HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.post(this.url + 'usuarios', params, { headers: headers });
+        return this.http.post(this.url + 'locations', params, { headers: headers });
     };
-    UserService.prototype.getUsers = function () {
+    LocationsService.prototype.getLocations = function () {
         var headers = new http_1.HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.get(this.url + 'usuarios', { headers: headers });
+        return this.http.get(this.url + 'locations', { headers: headers });
     };
-    UserService.prototype.getUser = function (id) {
+    LocationsService.prototype.getLocation = function (id) {
         var headers = new http_1.HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.get(this.url + 'usuarios/' + id, { headers: headers });
+        return this.http.get(this.url + 'locations/' + id, { headers: headers });
     };
-    UserService.prototype.deleteUser = function (id) {
+    LocationsService.prototype.deleteLocation = function (id) {
         var headers = new http_1.HttpHeaders().set('Content-Type', 'application/json');
-        return this.http["delete"](this.url + 'usuarios/' + id, { headers: headers });
+        return this.http["delete"](this.url + 'locations/' + id, { headers: headers });
     };
-    UserService.prototype.updateUser = function (user) {
-        var params = JSON.stringify(user);
+    LocationsService.prototype.updateLocation = function (location) {
+        var params = JSON.stringify(location);
         var headers = new http_1.HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.put(this.url + 'usuarios/' + user.id, params, { headers: headers });
+        return this.http.put(this.url + 'locations/' + location.id, params, { headers: headers });
     };
-    UserService = __decorate([
+    LocationsService = __decorate([
         core_1.Injectable({
             providedIn: 'root'
         })
-    ], UserService);
-    return UserService;
+    ], LocationsService);
+    return LocationsService;
 }());
-exports.UserService = UserService;
+exports.LocationsService = LocationsService;

@@ -14,9 +14,6 @@ var UsersService = /** @class */ (function () {
         this.http = http;
         this.url = 'http://localhost:8080/api/';
     }
-    /*getUsers(): Observable<User>{
-        return this.http.get(this.url + 'users');
-    }*/
     UsersService.prototype.saveUser = function (user) {
         var params = JSON.stringify(user);
         var headers = new http_1.HttpHeaders().set('Content-Type', 'application/json');

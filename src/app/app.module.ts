@@ -7,7 +7,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { UsersComponent } from './components/users/users.component';
 import { FormUserComponent } from './components/form_user/form_user.component';
-import { CityComponent } from './components/city/city.component';
+import { LocationsComponent } from './components/locations/locations.component';
+import { FormLocationComponent } from './components/form_location/form_location.component';
 import { IndexComponent } from './components/index/index.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -17,7 +18,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AppComponent,
     UsersComponent,
     FormUserComponent,
-    CityComponent,
+    LocationsComponent,
+    FormLocationComponent,
     IndexComponent,
     HeaderComponent,
     FooterComponent

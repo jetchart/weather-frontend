@@ -9,6 +9,7 @@ exports.__esModule = true;
 var core_1 = require("@angular/core");
 var FooterComponent = /** @class */ (function () {
     function FooterComponent() {
+        this.autor = "JME";
     }
     FooterComponent = __decorate([
         core_1.Component({
