@@ -1,0 +1,33 @@
+<h1>{{titulo}}</h1>
+<table class="table table-striped table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">User</th>
+      <th scope="col">Location</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let userLocation of userLocations" >
+      <td>{{userLocation.id}}</td>
+      <td>{{userLocation.user.nombre}}</td>
+      <td>{{userLocation.location.nombre}}</td>
+      <td><button class="btn btn-light"(click)="deleteUserLocationByUserIdAndLocationId(userLocation.user.id, userLocation.location.id)">Eliminar</button></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<form class="form-group" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+  <p>
+    <label for="id">LocationId</label>
+    <input flex class="form-control" type="number" name="id" #id="ngModel" [(ngModel)]="userLocationInsertar.location.id" required />
+    <span class="form_error" *ngIf="id.touched && !id.valid">
+      El id es obligatorio
+    </span>
+  </p>
+
+  <input class="btn btn-primary" type="submit" value="Agregar location" [disabled]="!userForm.form.valid" />
+</form>

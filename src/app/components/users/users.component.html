@@ -17,7 +17,7 @@
       <td>{{user.apellido}}</td>
       <td>{{user.username}}</td>
       <td>{{user.createAt}}</td>
-      <td><button class="btn btn-light" (click)="updateUser(user.id)">Editar</button> &nbsp; <button class="btn btn-light"(click)="deleteUser(user.id)">Eliminar</button></td>
+      <td><button class="btn btn-light" (click)="updateUser(user.id)">Editar</button> &nbsp; <button class="btn btn-light"(click)="deleteUser(user.id)">Eliminar</button> &nbsp; <button class="btn btn-light"(click)="goToBoards(user.id)">Boards</button></td>
     </tr>
   </tbody>
 </table>

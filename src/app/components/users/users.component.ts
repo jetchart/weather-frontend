@@ -30,11 +30,6 @@ export class UsersComponent implements OnInit, OnDestroy{
   getUsers() {
     this._usersService.getUsers().subscribe(
       result => {
-          /*if(result.code != 200){
-              console.log(result);
-          }else{
-              this.nombre = result.data[0].nombre;
-          }*/
           console.log(result);
           this.users = result;
       },
@@ -61,6 +56,10 @@ export class UsersComponent implements OnInit, OnDestroy{
 
       updateUser(id) {
         this._router.navigate(["/form_user", id]);
+      };
+
+      goToBoards(id) {
+        this._router.navigate(["/boards/", id]);
       };
 
     deleteUser(id){
