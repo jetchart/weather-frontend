@@ -9,6 +9,9 @@ import { BoardsComponent } from './components/boards/boards.component';
 import { LocationsComponent } from './components/locations/locations.component';
 import { IndexComponent } from './components/index/index.component';
 
+import { AutocompleteOverviewExample } from './components/autocomplete-overview-example/autocomplete-overview-example';
+
+
 //Routes array
 const appRoutes : Routes = [
   {path: '', component: IndexComponent},

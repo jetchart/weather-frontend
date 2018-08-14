@@ -27,6 +27,11 @@ export class LocationsService{
   		return this.http.get(this.url+'locations', {headers: headers});
   	}
 
+    getLocationsByNombreContaining(nombre): Observable<any>{
+      let headers = new HttpHeaders().set('Content-Type', 'application/json');
+      return this.http.get(this.url+'/locations/nombre/' + nombre, {headers: headers});
+    }
+
   	getLocation(id): Observable<any>{
   		let headers = new HttpHeaders().set('Content-Type', 'application/json');
   		return this.http.get(this.url+'locations/'+id, {headers: headers});
