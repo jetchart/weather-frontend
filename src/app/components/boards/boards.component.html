@@ -13,7 +13,7 @@
       <td>{{userLocation.id}}</td>
       <td>{{userLocation.user.nombre}}</td>
       <td>{{userLocation.location.nombre}}</td>
-      <td><button class="btn btn-light"(click)="deleteUserLocationByUserIdAndLocationId(userLocation.user.id, userLocation.location.id)">Eliminar</button></td>
+      <td><button class="btn btn-light"(click)="deleteUserLocationById(userLocation.id)">Eliminar</button></td>
     </tr>
   </tbody>
 </table>
@@ -23,7 +23,7 @@
 <form class="form-group" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
   <p>
     <label for="id">LocationId</label>
-    <input flex class="form-control" type="number" name="id" #id="ngModel" [(ngModel)]="userLocationInsertar.location.id" required />
+    <input flex class="form-control" type="text" name="id" #id="ngModel" [(ngModel)]="userLocationInsertar.location.id" required />
     <span class="form_error" *ngIf="id.touched && !id.valid">
       El id es obligatorio
     </span>

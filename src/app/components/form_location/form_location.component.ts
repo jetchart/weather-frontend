@@ -12,13 +12,13 @@ export class FormLocationComponent implements OnInit{
   public nombre : String;
   public locations : Location[];
   public locationInsertar : Location;
-  public id : Number;
+  public id : String;
   constructor(public _locationsService: LocationsService,
               public _router: Router, public _route: ActivatedRoute){
     this.titulo = "Alta location";
     this.id = this._route.snapshot.params['id'];
     this.locationInsertar = new Location();
-    if (this.id != null && this.id > 0){
+    if (this.id != null && this.id != "0"){
       this.titulo = "Edición location";
       this.getLocation();
     }

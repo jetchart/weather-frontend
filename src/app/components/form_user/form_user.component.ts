@@ -12,13 +12,13 @@ export class FormUserComponent implements OnInit{
   public nombre : String;
   public users : User[];
   public userInsertar : User;
-  public id : Number;
+  public id : String;
   constructor(public _usersService: UsersService,
               public _router: Router, public _route: ActivatedRoute){
     this.titulo = "Alta usuario";
     this.id = this._route.snapshot.params['id'];
     this.userInsertar = new User();
-    if (this.id != null && this.id > 0){
+    if (this.id != null && this.id != "0"){
       this.titulo = "Edición usuario";
       this.getUser();
     }

@@ -1,5 +1,5 @@
 export class Location {
-  id: number;
+  id: string;
   nombre: string;
   woeid: string;
   createAt: string;

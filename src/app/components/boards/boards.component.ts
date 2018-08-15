@@ -34,9 +34,11 @@ export class BoardsComponent implements OnInit {
   onSubmit(form){
     this.saveLocation();
     form.reset();
+
   };
 
   saveLocation(){
+
     this._userLocationsService.saveLocation(this.userLocationInsertar).subscribe(
       result => {
         this.getUserLocationsByUserId();
@@ -69,8 +71,8 @@ export class BoardsComponent implements OnInit {
       });
     };
 
-  deleteUserLocationByUserIdAndLocationId(userId, locationId) {
-    this._userLocationsService.deleteUserLocationByUserIdAndLocationId(userId, locationId).subscribe(
+  deleteUserLocationById(userLocationId) {
+    this._userLocationsService.deleteUserLocationById(userLocationId).subscribe(
       result => {
           console.log("Eliminado");
           this.getUserLocationsByUserId();

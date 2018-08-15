@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {UsersService} from "./users.service";
 import { User } from "./user";
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { timer, Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent } from "rxjs";
 
 @Component({
   selector: 'users',
@@ -12,6 +13,7 @@ export class UsersComponent implements OnInit, OnDestroy{
   public nombre : String;
   public users : User[];
   public userInsertar : User;
+  public users$: Observable<User[]>
   constructor(public _usersService: UsersService,
               public _router: Router){
     this.titulo = "Users";
@@ -19,6 +21,7 @@ export class UsersComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(){
+    //this.users$ = this._usersService.getUsers();
     console.log ('ngOnInit ejecutado');
     this.getUsers();
   };
@@ -28,7 +31,8 @@ export class UsersComponent implements OnInit, OnDestroy{
   };
 
   getUsers() {
-    this._usersService.getUsers().subscribe(
+    this._usersService.getUsers()
+    .subscribe(
       result => {
           console.log(result);
           this.users = result;

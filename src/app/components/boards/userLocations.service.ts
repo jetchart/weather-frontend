@@ -18,7 +18,6 @@ export class UserLocationsService{
     }
 
     saveLocation(userLocation: UserLocation): Observable<any>{
-      console.log('dd');
   		let params = JSON.stringify(userLocation);
   		let headers = new HttpHeaders().set('Content-Type','application/json');
   		return this.http.post(this.url+ '/users/locations/', params, {headers: headers});
@@ -29,9 +28,9 @@ export class UserLocationsService{
   		return this.http.get(this.url+ '/users/'+id+'/locations/' , {headers: headers});
   	}
 
-  	deleteUserLocationByUserIdAndLocationId(userId, locationId): Observable<any>{
+  	deleteUserLocationById(id): Observable<any>{
   		let headers = new HttpHeaders().set('Content-Type', 'application/json');
-  		return this.http.delete(this.url+ '/users/'+userId+'/locations/' + locationId , {headers: headers});
+  		return this.http.delete(this.url+ '/users/locations/' + id , {headers: headers});
   	}
 
 }
