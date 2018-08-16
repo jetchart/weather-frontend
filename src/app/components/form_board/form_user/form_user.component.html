@@ -1,0 +1,31 @@
+<h1>{{titulo}}</h1>
+
+<form class="form-group" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+
+
+  <p>
+    <label for="nombre">Nombre</label>
+    <input flex class="form-control" type="text" name="nombre" #nombre="ngModel" [(ngModel)]="userInsertar.nombre" required />
+    <span class="form_error" *ngIf="nombre.touched && !nombre.valid">
+      El nombre es obligatorio
+    </span>
+  </p>
+
+  <p>
+    <label for="apellido">Apellido</label>
+    <input class="form-control" type="text" name="apellido" #apellido="ngModel" [(ngModel)]="userInsertar.apellido" required />
+    <span class="form_error" *ngIf="apellido.touched && !apellido.valid">
+      El apellido es obligatorio
+    </span>
+  </p>
+
+  <p>
+    <label for="username">Username</label>
+    <input class="form-control" type="text" name="username" #username="ngModel" [(ngModel)]="userInsertar.username" required />
+    <span class="form_error" *ngIf="username.touched && !username.valid">
+      El username es obligatorio
+    </span>
+  </p>
+
+  <input class="btn btn-primary" type="submit" value="Enviar" [disabled]="!userForm.form.valid" />
+</form>

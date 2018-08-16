@@ -9,6 +9,7 @@ import { UsersComponent } from './components/users/users.component';
 import { FormUserComponent } from './components/form_user/form_user.component';
 import { LocationsComponent } from './components/locations/locations.component';
 import { FormLocationComponent } from './components/form_location/form_location.component';
+import { FormBoardComponent } from './components/form_board/form_board.component';
 import { IndexComponent } from './components/index/index.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -28,7 +29,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     IndexComponent,
     HeaderComponent,
     FooterComponent,
-    BoardsComponent
+    BoardsComponent,
+    FormBoardComponent
   ],
   imports: [
     BrowserModule,

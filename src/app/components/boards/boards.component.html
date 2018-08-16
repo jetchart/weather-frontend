@@ -4,30 +4,16 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">User</th>
-      <th scope="col">Location</th>
-      <th scope="col">Delete</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let userLocation of userLocations" >
-      <td>{{userLocation.id}}</td>
-      <td>{{userLocation.user.nombre}}</td>
-      <td>{{userLocation.location.nombre}}</td>
-      <td><button class="btn btn-light"(click)="deleteUserLocationById(userLocation.id)">Eliminar</button></td>
+    <tr *ngFor="let board of boards" >
+      <td>{{board.id}}</td>
+      <td>{{board.nombre}}</td>
+      <td><button class="btn btn-light"(click)="openBoard(board.id)">Ver</button> &nbsp; <button class="btn btn-light"(click)="deleteBoardById(board.id)">Eliminar</button></td>
     </tr>
   </tbody>
 </table>
 
-
-
-<form class="form-group" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
-  <p>
-    <label for="id">LocationId</label>
-    <input flex class="form-control" type="text" name="id" #id="ngModel" [(ngModel)]="userLocationInsertar.location.id" required />
-    <span class="form_error" *ngIf="id.touched && !id.valid">
-      El id es obligatorio
-    </span>
-  </p>
-
-  <input class="btn btn-primary" type="submit" value="Agregar location" [disabled]="!userForm.form.valid" />
-</form>
+<a class="nav-link" routerLink="/form_board/0/{{userId}}">Agregar board</a>

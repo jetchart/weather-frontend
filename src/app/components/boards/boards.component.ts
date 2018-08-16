@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserLocation } from "./userLocation";
-import { UserLocationsService } from "./userLocations.service";
+import { BoardsService } from "./boards.service";
 import { UsersService } from "./../users/users.service";
 import { User } from "./../users/user";
+import { Board } from "./board";
 import { Location } from "./../locations/location";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
@@ -12,47 +12,32 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./boards.component.css']
 })
 export class BoardsComponent implements OnInit {
-  public userLocations : UserLocation[];
+  public boards : Board[];
   public userId : Number;
   public user : User;
-  public userLocationInsertar : UserLocation;
   public titulo : String;
   constructor(public _usersService: UsersService,
-              public _userLocationsService: UserLocationsService,
+              public _boardsService: BoardsService,
               public _route: ActivatedRoute,
               public _router: Router) {
-    this.userLocationInsertar = new UserLocation();
-    this.userLocationInsertar.location =  new Location();
     this.userId = this._route.snapshot.params['id'];
-    this.getUserLocationsByUserId();
+    this.getBoardsByUserId();
     this.getUser();
   }
 
   ngOnInit() {
   }
 
-  onSubmit(form){
-    this.saveLocation();
-    form.reset();
 
-  };
-
-  saveLocation(){
-
-    this._userLocationsService.saveLocation(this.userLocationInsertar).subscribe(
-      result => {
-        this.getUserLocationsByUserId();
-      },
-      error => {
-          console.log(<any>error);
-      });
+  openBoard(boardId){
+    this._router.navigate(["/form_board", boardId, this.userId]);
   }
 
-  getUserLocationsByUserId() {
-    this._userLocationsService.getUserLocationsByUserId(this.userId).subscribe(
+  getBoardsByUserId() {
+    this._boardsService.getBoardsByUserId(this.userId).subscribe(
       result => {
           console.log(result);
-          this.userLocations = result;
+          this.boards = result;
       },
       error => {
           console.log(<any>error);
@@ -63,19 +48,18 @@ export class BoardsComponent implements OnInit {
     this._usersService.getUser(this.userId).subscribe(
       result => {
           this.user = result;
-          this.titulo = "Board de " + this.user.nombre + " " + this.user.apellido;
-          this.userLocationInsertar.user = this.user;
+          this.titulo = "Boards de " + this.user.nombre + " " + this.user.apellido;
       },
       error => {
           console.log(<any>error);
       });
     };
 
-  deleteUserLocationById(userLocationId) {
-    this._userLocationsService.deleteUserLocationById(userLocationId).subscribe(
+  deleteBoardById(boardId) {
+    this._boardsService.deleteBoardById(boardId).subscribe(
       result => {
           console.log("Eliminado");
-          this.getUserLocationsByUserId();
+          this.getBoardsByUserId();
       },
       error => {
           console.log(<any>error);

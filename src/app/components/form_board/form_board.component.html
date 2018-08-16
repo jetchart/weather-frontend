@@ -1,0 +1,14 @@
+<h1>{{titulo}}</h1>
+
+<form class="form-group" #boardForm="ngForm" (ngSubmit)="onSubmit(boardForm)">
+
+  <p>
+    <label for="nombre">Nombre</label>
+    <input flex class="form-control" type="text" name="nombre" #nombre="ngModel" [(ngModel)]="boardNew.nombre" required />
+    <span class="form_error" *ngIf="nombre.touched && !nombre.valid">
+      El nombre es obligatorio
+    </span>
+  </p>
+
+  <input class="btn btn-primary" type="submit" value="Guardar" [disabled]="!boardForm.form.valid" />
+</form>
