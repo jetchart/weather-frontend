@@ -1,6 +1,6 @@
 <h1>{{titulo}}</h1>
 
-<form class="form-group" #boardForm="ngForm" (ngSubmit)="onSubmit(boardForm)">
+<!-- <form class="form-group" #boardForm="ngForm" (ngSubmit)="onSubmit(boardForm)"> -->
 
   <p>
     <label for="nombre">Nombre</label>
@@ -9,6 +9,29 @@
       El nombre es obligatorio
     </span>
   </p>
+</form>
+  <table class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Woeid</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let boardLocation of boardLocations" >
+        <td>{{boardLocation.id}}</td>
+        <td>{{boardLocation.location.nombre}}</td>
+        <td>{{boardLocation.location.woeid}}</td>
+        <td><button class="btn btn-light"(click)="deleteBoardLocationByBoardLocationId(boardLocation.id)">Eliminar</button></td>
+      </tr>
+    </tbody>
+  </table>
 
   <input class="btn btn-primary" type="submit" value="Guardar" [disabled]="!boardForm.form.valid" />
-</form>
+<!--</form> -->
+
+
+<input type="text"  [(ngModel)]="locationIdNew" required />
+<button class="btn btn-light" (click)="addLocation(locationIdNew)">Agregar location</button>
