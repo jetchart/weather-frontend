@@ -32,7 +32,7 @@ export class FormBoardComponent implements OnInit{
     this.getUser(this.userId);
     if (this.boardId != null && this.boardId != "0"){
       this.getBoard();
-      this.getBoardLocationsByBoardId(this.boardId);
+      this.getBoardLocationsByBoardId();
     }
   }
 
@@ -52,6 +52,7 @@ export class FormBoardComponent implements OnInit{
     boardLocation.location.id = locationIdNew;
     this.saveBoardLocation(boardLocation);
     this.locationIdNew = "";
+    this.getBoardLocationsByBoardId();
   }
 
   saveBoardLocation(boardLocation : BoardLocation) {
@@ -101,7 +102,7 @@ export class FormBoardComponent implements OnInit{
     this._boardsService.saveBoard(this.boardNew).subscribe(
       result => {
           console.log(result);
-          this.getBoardLocationsByBoardId(boardId);
+          this.getBoardLocationsByBoardId();
       },
       error => {
           console.log(<any>error);
