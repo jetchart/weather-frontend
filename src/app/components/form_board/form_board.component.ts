@@ -92,6 +92,7 @@ export class FormBoardComponent implements OnInit{
       result => {
           console.log(result);
           this.boardNew = result;
+          this.titulo = "Board: " + this.boardNew.nombre;
       },
       error => {
           console.log(<any>error);

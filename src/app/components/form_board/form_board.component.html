@@ -19,14 +19,22 @@
     <thead>
       <tr>
         <th scope="col">Location</th>
-        <th scope="col">Woeid</th>
+        <th scope="col">Temp.</th>
+        <th scope="col">Clima</th>
+        <th scope="col">Humedad</th>
+        <th scope="col">Visibilidad</th>
+        <th scope="col">Publication date</th>
         <th scope="col">Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let boardLocation of boardLocations" >
         <td>{{boardLocation.location.nombre}}</td>
-        <td>{{boardLocation.location.woeid}}</td>
+        <td>{{boardLocation.location.temperature}}°<sup>c</sup></td>
+        <td>{{boardLocation.location.text}} <img src="./assets/{{boardLocation.location.text}}.png"></td>
+        <td>{{boardLocation.location.humidity}}</td>
+        <td>{{boardLocation.location.visibility}}</td>
+        <td>{{boardLocation.location.pubDate}}</td>
         <td><button class="btn btn-light"(click)="deleteBoardLocationByBoardLocationId(boardLocation.id)">Eliminar</button></td>
       </tr>
     </tbody>
