@@ -13,24 +13,27 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   templateUrl: './form_board.component.html'
 })
 export class FormBoardComponent implements OnInit{
-  public titulo : String;
-  public nombre : String;
+  public title : String;
+  public name : String;
   public boardNew : Board;
+  public locationDeleteId : String;
   public boardId : String;
   public boardLocations : BoardLocation[];
   public userId : String;
   public locationIdNew : String;
+  public action : String = "NEW";
   constructor(public _boardsService : BoardsService,
               public _boardLocationsService : BoardLocationsService,
               public _usersService : UsersService,
               public _router: Router,
               public _route: ActivatedRoute){
-    this.titulo = "Board";
+    this.title = "Board";
     this.boardId = this._route.snapshot.params['boardId'];
     this.userId = this._route.snapshot.params['userId'];
     this.boardNew = new Board();
     this.getUser(this.userId);
     if (this.boardId != null && this.boardId != "0"){
+      this.action = "UPDATE";
       this.getBoard();
       this.getBoardLocationsByBoardId();
     }
@@ -43,6 +46,10 @@ export class FormBoardComponent implements OnInit{
     this.saveBoard();
     form.reset();
   };
+
+  setLocationIdToDelete(locationId){
+    this.locationDeleteId = locationId;
+  }
 
   addLocation(locationIdNew){
     let boardLocation = new BoardLocation();
@@ -79,12 +86,12 @@ export class FormBoardComponent implements OnInit{
     deleteBoardLocationByBoardLocationId(boardLocationId) {
       this._boardLocationsService.deleteBoardLocationByBoardLocationId(boardLocationId).subscribe(
         result => {
-            console.log("Eliminado");
             this.getBoardLocationsByBoardId();
         },
         error => {
             console.log(<any>error);
         });
+        return true;
       };
 
   getBoard() {
@@ -92,7 +99,7 @@ export class FormBoardComponent implements OnInit{
       result => {
           console.log(result);
           this.boardNew = result;
-          this.titulo = "Board: " + this.boardNew.nombre;
+          this.setTitle();
       },
       error => {
           console.log(<any>error);
@@ -102,8 +109,16 @@ export class FormBoardComponent implements OnInit{
   saveBoard() {
     this._boardsService.saveBoard(this.boardNew).subscribe(
       result => {
-          console.log(result);
-          this.getBoardLocationsByBoardId();
+          if (this.action == "NEW"){
+            this.action = "UPDATE";
+            this.boardNew = result;
+            this.boardId = this.boardNew.id
+            this.setTitle();
+            this._router.navigate(['/form_board',this.boardId,this.userId]);
+
+          }else{
+            this.getBoardLocationsByBoardId();
+          }
       },
       error => {
           console.log(<any>error);
@@ -121,5 +136,9 @@ export class FormBoardComponent implements OnInit{
             console.log(<any>error);
         });
       };
+
+      setTitle(){
+        this.title = "Board: " + this.boardNew.name;
+      }
 
   }

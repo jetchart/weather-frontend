@@ -12,7 +12,7 @@ var UsersComponent = /** @class */ (function () {
     function UsersComponent(_usersService, _router) {
         this._usersService = _usersService;
         this._router = _router;
-        this.titulo = "Usuarios";
+        this.title = "Usuarios";
         this.userInsertar = new user_1.User();
     }
     UsersComponent.prototype.ngOnInit = function () {

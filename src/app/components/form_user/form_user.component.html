@@ -1,31 +1,35 @@
-<h1>{{titulo}}</h1>
+<h1>{{title}}</h1>
 
 <form class="form-group" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
 
 
   <p>
-    <label for="nombre">Nombre</label>
-    <input flex class="form-control" type="text" name="nombre" #nombre="ngModel" [(ngModel)]="userInsertar.nombre" required />
-    <span class="form_error" *ngIf="nombre.touched && !nombre.valid">
-      El nombre es obligatorio
+    <label for="name">Name</label>
+    <input flex class="form-control" type="text" name="name" #name="ngModel" [(ngModel)]="userInsert.name" required />
+    <span class="form_error" *ngIf="name.touched && !name.valid">
+      Name is required
     </span>
   </p>
 
   <p>
-    <label for="apellido">Apellido</label>
-    <input class="form-control" type="text" name="apellido" #apellido="ngModel" [(ngModel)]="userInsertar.apellido" required />
-    <span class="form_error" *ngIf="apellido.touched && !apellido.valid">
-      El apellido es obligatorio
+    <label for="surname">Surname</label>
+    <input class="form-control" type="text" name="surname" #surname="ngModel" [(ngModel)]="userInsert.surname" required />
+    <span class="form_error" *ngIf="surname.touched && !surname.valid">
+      Surname is required
     </span>
   </p>
 
   <p>
     <label for="username">Username</label>
-    <input class="form-control" type="text" name="username" #username="ngModel" [(ngModel)]="userInsertar.username" required />
+    <input class="form-control" type="text" name="username" #username="ngModel" [(ngModel)]="userInsert.username" required />
     <span class="form_error" *ngIf="username.touched && !username.valid">
-      El username es obligatorio
+      Username is required
     </span>
   </p>
 
-  <input class="btn btn-primary" type="submit" value="Enviar" [disabled]="!userForm.form.valid" />
+  <input class="btn btn-primary" type="submit" value="Guardar" [disabled]="!userForm.form.valid" />
 </form>
+
+<div>
+  <a class="btn btn-primary btn-sm float-right" routerLink="/users">Back</a>
+</div>

@@ -5,10 +5,10 @@ import { Component, OnInit, DoCheck } from '@angular/core';
   templateUrl : './index.component.html'
 })
 export class IndexComponent implements OnInit, DoCheck{
-  public titulo : string;
+  public title : string;
 
   constructor(){
-      this.titulo = 'Index page';
+      this.title = 'Index page';
   }
 
   //Al iniciar el componente

@@ -9,9 +9,11 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class LocationsComponent implements OnInit, OnDestroy{
   public titulo : String;
-  public nombre : String;
+  public name : String;
   public locations : Location[];
   public locationInsertar : Location;
+  public locationIdDelete : String;
+
   constructor(public _locationsService: LocationsService,
               public _router: Router){
     this.titulo = "Locations";
@@ -25,6 +27,10 @@ export class LocationsComponent implements OnInit, OnDestroy{
 
   ngOnDestroy(){
 
+  };
+
+  setLocationIdDelete(locationId){
+    this.locationIdDelete = locationId;
   };
 
   getLocations() {
@@ -44,7 +50,7 @@ export class LocationsComponent implements OnInit, OnDestroy{
             /*if(result.code != 200){
                 console.log(result);
             }else{
-                this.nombre = result.data[0].nombre;
+                this.name = result.data[0].name;
             }*/
             console.log(result);
             this.getLocations();

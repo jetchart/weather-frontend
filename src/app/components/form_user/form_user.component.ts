@@ -8,24 +8,23 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   templateUrl: './form_user.component.html'
 })
 export class FormUserComponent implements OnInit{
-  public titulo : String;
+  public title : String;
   public nombre : String;
   public users : User[];
-  public userInsertar : User;
+  public userInsert : User;
   public id : String;
   constructor(public _usersService: UsersService,
               public _router: Router, public _route: ActivatedRoute){
-    this.titulo = "Alta usuario";
+    this.title = "Create user";
     this.id = this._route.snapshot.params['id'];
-    this.userInsertar = new User();
+    this.userInsert = new User();
     if (this.id != null && this.id != "0"){
-      this.titulo = "Edición usuario";
+      this.title = "Edit user";
       this.getUser();
     }
   }
 
   ngOnInit(){
-
   };
 
   onSubmit(form){
@@ -37,7 +36,7 @@ export class FormUserComponent implements OnInit{
     this._usersService.getUser(this.id).subscribe(
       result => {
           console.log(result);
-          this.userInsertar = result;
+          this.userInsert = result;
       },
       error => {
           console.log(<any>error);
@@ -45,13 +44,8 @@ export class FormUserComponent implements OnInit{
     };
 
   saveUser() {
-    this._usersService.saveUser(this.userInsertar).subscribe(
+    this._usersService.saveUser(this.userInsert).subscribe(
       result => {
-          /*if(result.code != 200){
-              console.log(result);
-          }else{
-              this.nombre = result.data[0].nombre;
-          }*/
           console.log(result);
           this._router.navigate(['/users']);
       },

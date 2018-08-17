@@ -9,20 +9,19 @@ import { timer, Observable, Subject, asapScheduler, pipe, of, from, interval, me
   templateUrl: './users.component.html'
 })
 export class UsersComponent implements OnInit, OnDestroy{
-  public titulo : String;
-  public nombre : String;
+  public title : String;
+  public name : String;
   public users : User[];
-  public userInsertar : User;
-  public users$: Observable<User[]>
+  public userInsert : User;
+  public users$: Observable<User[]>;
+  public userIdDelete : String;
   constructor(public _usersService: UsersService,
               public _router: Router){
-    this.titulo = "Users";
-    this.userInsertar = new User();
+    this.title = "Users";
+    this.userInsert = new User();
   }
 
   ngOnInit(){
-    //this.users$ = this._usersService.getUsers();
-    console.log ('ngOnInit ejecutado');
     this.getUsers();
   };
 
@@ -42,13 +41,17 @@ export class UsersComponent implements OnInit, OnDestroy{
       });
     };
 
+    setUserIdDelete(userId){
+      this.userIdDelete = userId;
+    }
+
     saveUser() {
-      this._usersService.saveUser(this.userInsertar).subscribe(
+      this._usersService.saveUser(this.userInsert).subscribe(
         result => {
             /*if(result.code != 200){
                 console.log(result);
             }else{
-                this.nombre = result.data[0].nombre;
+                this.name = result.data[0].name;
             }*/
             console.log(result);
             this.getUsers();
@@ -69,7 +72,6 @@ export class UsersComponent implements OnInit, OnDestroy{
     deleteUser(id){
     	this._usersService.deleteUser(id).subscribe(
     		response => {
-            console.log('eliminado');
       			this.getUsers();
     		},
     		error => {

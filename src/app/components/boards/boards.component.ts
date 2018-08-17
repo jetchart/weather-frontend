@@ -15,7 +15,8 @@ export class BoardsComponent implements OnInit {
   public boards : Board[];
   public userId : Number;
   public user : User;
-  public titulo : String;
+  public title : String;
+  public boardIdDelete : String;
   constructor(public _usersService: UsersService,
               public _boardsService: BoardsService,
               public _route: ActivatedRoute,
@@ -48,7 +49,7 @@ export class BoardsComponent implements OnInit {
     this._usersService.getUser(this.userId).subscribe(
       result => {
           this.user = result;
-          this.titulo = "Boards de " + this.user.nombre + " " + this.user.apellido;
+          this.title = "Boards of " + this.user.name + " " + this.user.surname;
       },
       error => {
           console.log(<any>error);
@@ -58,12 +59,15 @@ export class BoardsComponent implements OnInit {
   deleteBoardById(boardId) {
     this._boardsService.deleteBoardById(boardId).subscribe(
       result => {
-          console.log("Eliminado");
           this.getBoardsByUserId();
       },
       error => {
           console.log(<any>error);
       });
     };
+
+    setBoardIdDelete(boardId){
+      this.boardIdDelete = boardId;
+    }
 
 }

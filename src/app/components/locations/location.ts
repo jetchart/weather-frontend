@@ -1,6 +1,6 @@
 export class Location {
   id: string;
-  nombre: string;
+  name: string;
   woeid: string;
   pubDate: string;
   chill: string;

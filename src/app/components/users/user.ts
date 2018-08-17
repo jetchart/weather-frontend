@@ -1,7 +1,7 @@
 export class User {
   id: string;
-  nombre: string;
-  apellido: string;
+  name: string;
+  surname: string;
   username: string;
   createAt: string;
 }

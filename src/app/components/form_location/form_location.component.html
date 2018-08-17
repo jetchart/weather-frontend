@@ -1,20 +1,20 @@
-<h1>{{titulo}}</h1>
+<h1>{{title}}</h1>
 
 <form class="form-group" #locationForm="ngForm" (ngSubmit)="onSubmit(locationForm)">
 
   <p>
-    <label for="nombre">Nombre</label>
-    <input flex class="form-control" type="text" name="nombre" #nombre="ngModel" [(ngModel)]="locationInsertar.nombre" required />
-    <span class="form_error" *ngIf="nombre.touched && !nombre.valid">
-      El nombre es obligatorio
+    <label for="name">Name</label>
+    <input flex class="form-control" type="text" name="name" #name="ngModel" [(ngModel)]="locationInsert.name" required />
+    <span class="form_error" *ngIf="name.touched && !name.valid">
+      Name is required
     </span>
   </p>
 
   <p>
     <label for="woeid">Woeid</label>
-    <input class="form-control" type="text" name="woeid" #woeid="ngModel" [(ngModel)]="locationInsertar.woeid" required />
+    <input class="form-control" type="text" name="woeid" #woeid="ngModel" [(ngModel)]="locationInsert.woeid" required />
     <span class="form_error" *ngIf="woeid.touched && !woeid.valid">
-      El apellido es obligatorio
+      Woeid is required
     </span>
   </p>
 
@@ -22,5 +22,5 @@
 </form>
 
 <div>
-  <a class="btn btn-primary btn-sm float-right" routerLink="/locations">Volver</a>
+  <a class="btn btn-primary btn-sm float-right" routerLink="/locations">Back</a>
 </div>

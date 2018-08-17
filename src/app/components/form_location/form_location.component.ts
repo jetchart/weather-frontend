@@ -8,18 +8,18 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   templateUrl: './form_location.component.html'
 })
 export class FormLocationComponent implements OnInit{
-  public titulo : String;
-  public nombre : String;
+  public title : String;
+  public name : String;
   public locations : Location[];
-  public locationInsertar : Location;
+  public locationInsert : Location;
   public id : String;
   constructor(public _locationsService: LocationsService,
               public _router: Router, public _route: ActivatedRoute){
-    this.titulo = "Alta location";
+    this.title = "Create location";
     this.id = this._route.snapshot.params['id'];
-    this.locationInsertar = new Location();
+    this.locationInsert = new Location();
     if (this.id != null && this.id != "0"){
-      this.titulo = "Edición location";
+      this.title = "Edit location";
       this.getLocation();
     }
   }
@@ -37,7 +37,7 @@ export class FormLocationComponent implements OnInit{
     this._locationsService.getLocation(this.id).subscribe(
       result => {
           console.log(result);
-          this.locationInsertar = result;
+          this.locationInsert = result;
       },
       error => {
           console.log(<any>error);
@@ -45,7 +45,7 @@ export class FormLocationComponent implements OnInit{
     };
 
   saveLocation() {
-    this._locationsService.saveLocation(this.locationInsertar).subscribe(
+    this._locationsService.saveLocation(this.locationInsert).subscribe(
       result => {
           console.log(result);
           this._router.navigate(['/locations']);
