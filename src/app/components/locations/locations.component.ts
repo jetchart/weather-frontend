@@ -16,12 +16,11 @@ export class LocationsComponent implements OnInit, OnDestroy{
 
   constructor(public _locationsService: LocationsService,
               public _router: Router){
-    this.titulo = "Locations";
+    this.title = "Locations";
     this.locationInsertar = new Location();
   }
 
   ngOnInit(){
-    console.log ('ngOnInit ejecutado');
     this.getLocations();
   };
 

@@ -14,6 +14,7 @@
 </div>
 
 <div *ngIf="action!='NEW'">
+    <div *ngIf="1==2">
     <table class="table table-striped table-dark">
       <thead>
         <tr>
@@ -38,8 +39,26 @@
         </tr>
       </tbody>
     </table>
-  <input type="text"  [(ngModel)]="locationIdNew" required />
-  <button class="btn btn-light" (click)="addLocation(locationIdNew)">Add location</button>
+  </div>
+
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let boardLocation of boardLocations">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{boardLocation.location.name}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted"><b>{{boardLocation.location.temperature}}°<sup>c</sup></b> &nbsp; {{boardLocation.location.text}}</h6>
+            <p class="card-text"><img src="./assets/{{boardLocation.location.text}}.png" ></p>
+            <button (click)="show(location.id)" class="card-link btn btn-link">Ver</button>
+            <button (click)="setLocationIdToDelete(location.id)" data-toggle="modal" data-target="#deleteModal" class="card-link btn btn-link">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <div>
+    <input type="text"  [(ngModel)]="locationIdNew" required />
+    <button class="btn btn-light" (click)="addLocation(locationIdNew)">Add location</button>
+  </div>
 </div>
 
 <div>
