@@ -3,6 +3,7 @@ import {UsersService} from "./users.service";
 import { User } from "./user";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { timer, Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent } from "rxjs";
+import {throwError} from 'rxjs';
 
 @Component({
   selector: 'users',
@@ -37,7 +38,7 @@ export class UsersComponent implements OnInit, OnDestroy{
           this.users = result;
       },
       error => {
-          console.log(<any>error);
+        throwError(error);
       });
     };
 
@@ -48,11 +49,6 @@ export class UsersComponent implements OnInit, OnDestroy{
     saveUser() {
       this._usersService.saveUser(this.userInsert).subscribe(
         result => {
-            /*if(result.code != 200){
-                console.log(result);
-            }else{
-                this.name = result.data[0].name;
-            }*/
             console.log(result);
             this.getUsers();
         },

@@ -35,7 +35,7 @@
           <td>{{boardLocation.location.humidity}}</td>
           <td>{{boardLocation.location.visibility}}</td>
           <td>{{boardLocation.location.pubDate}}</td>
-          <td><button class="btn btn-light"(click)="setLocationIdToDelete(boardLocation.id)" data-toggle="modal" data-target="#deleteModal">Eliminar</button></td>
+          <td><button class="btn btn-light"(click)="setBoardLocationIdToDelete(boardLocation.id)" data-toggle="modal" data-target="#deleteModal">Eliminar</button></td>
         </tr>
       </tbody>
     </table>
@@ -43,13 +43,13 @@
 
     <div class="row">
       <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let boardLocation of boardLocations">
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 12rem;">
           <div class="card-body">
             <h5 class="card-title">{{boardLocation.location.name}}</h5>
             <h6 class="card-subtitle mb-2 text-muted"><b>{{boardLocation.location.temperature}}°<sup>c</sup></b> &nbsp; {{boardLocation.location.text}}</h6>
             <p class="card-text"><img src="./assets/{{boardLocation.location.text}}.png" ></p>
             <button (click)="show(location.id)" class="card-link btn btn-link">Ver</button>
-            <button (click)="setLocationIdToDelete(location.id)" data-toggle="modal" data-target="#deleteModal" class="card-link btn btn-link">Delete</button>
+            <button (click)="setBoardLocationIdToDelete(boardLocation.id)" data-toggle="modal" data-target="#deleteModal" class="card-link btn btn-link">Delete</button>
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteBoardLocationByBoardLocationId(locationDeleteId)">Delete</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="deleteBoardLocationByBoardLocationId(locationBoardDeleteId)">Delete</button>
       </div>
     </div>
   </div>

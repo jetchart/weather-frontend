@@ -8,7 +8,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   templateUrl: './locations.component.html'
 })
 export class LocationsComponent implements OnInit, OnDestroy{
-  public titulo : String;
+  public title : String;
   public name : String;
   public locations : Location[];
   public locationInsertar : Location;
@@ -25,7 +25,6 @@ export class LocationsComponent implements OnInit, OnDestroy{
   };
 
   ngOnDestroy(){
-
   };
 
   setLocationIdDelete(locationId){

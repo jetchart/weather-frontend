@@ -3,6 +3,6 @@ import { Location } from "./../locations/location";
 
 export class Board {
   id: String;
-  nombre: String;
+  name: String;
   user: User;
 }

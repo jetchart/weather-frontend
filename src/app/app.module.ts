@@ -10,10 +10,13 @@ import { FormUserComponent } from './components/form_user/form_user.component';
 import { LocationsComponent } from './components/locations/locations.component';
 import { FormLocationComponent } from './components/form_location/form_location.component';
 import { FormBoardComponent } from './components/form_board/form_board.component';
+import { FormLoginComponent } from './components/form_login/form_login.component';
 import { IndexComponent } from './components/index/index.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BoardsComponent } from './components/boards/boards.component';
+import { GlobalErrorHandlerService } from './components/auth/globalErrorHandlerService';
+import { ErrorHandler} from '@angular/core';
 //Material
 import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +33,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     HeaderComponent,
     FooterComponent,
     BoardsComponent,
-    FormBoardComponent
+    FormBoardComponent,
+    FormLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,12 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatListModule
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    GlobalErrorHandlerService,
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandlerService
+    }
   ],
   bootstrap: [AppComponent]
 })

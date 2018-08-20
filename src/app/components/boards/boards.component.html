@@ -9,7 +9,7 @@
   <tbody>
     <tr *ngFor="let board of boards" >
       <td>{{board.name}}</td>
-      <td><button class="btn btn-light"(click)="openBoard(board.id)">Ver</button> &nbsp; <button data-toggle="modal" data-target="#deleteModal" class="btn btn-light"(click)="setBoardIdDelete(board.id)">Eliminar</button></td>
+      <td><button class="btn btn-link"(click)="openBoard(board.id)">Ver</button> &nbsp; <button data-toggle="modal" data-target="#deleteModal" class="btn btn-link"(click)="setBoardIdDelete(board.id)">Eliminar</button></td>
     </tr>
   </tbody>
 </table>

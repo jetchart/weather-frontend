@@ -1,4 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
+import {AuthService} from "./../auth/auth.service";
+import {LoginData} from "./../auth/loginData";
 
 @Component({
   selector : 'index',
@@ -6,9 +8,11 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 })
 export class IndexComponent implements OnInit, DoCheck{
   public title : string;
+  public loginData : LoginData;
 
-  constructor(){
+  constructor(public _authService : AuthService){
       this.title = 'Index page';
+
   }
 
   //Al iniciar el componente

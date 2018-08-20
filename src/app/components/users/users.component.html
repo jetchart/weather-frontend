@@ -2,22 +2,18 @@
 <table class="table table-striped table-dark">
   <thead>
     <tr>
-      <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Surname</th>
       <th scope="col">Username</th>
-      <th scope="col">Creation dates</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let user of users" >
-      <td>{{user.id}}</td>
       <td>{{user.name}}</td>
       <td>{{user.surname}}</td>
       <td>{{user.username}}</td>
-      <td>{{user.createAt}}</td>
-      <td><button class="btn btn-light" (click)="updateUser(user.id)">Edit</button> &nbsp; <button data-toggle="modal" data-target="#deleteModal" class="btn btn-light"(click)="setUserIdDelete(user.id)">Delete</button> &nbsp; <button class="btn btn-light"(click)="goToBoards(user.id)">Boards</button></td>
+      <td><button class="btn btn-link" (click)="updateUser(user.id)">Edit</button> &nbsp; <button data-toggle="modal" data-target="#deleteModal" class="btn btn-link"(click)="setUserIdDelete(user.id)">Delete</button> &nbsp; <button class="btn btn-link"(click)="goToBoards(user.id)">Boards</button></td>
     </tr>
   </tbody>
 </table>

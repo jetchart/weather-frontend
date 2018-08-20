@@ -9,6 +9,7 @@ import { FormBoardComponent } from './components/form_board/form_board.component
 import { BoardsComponent } from './components/boards/boards.component';
 import { LocationsComponent } from './components/locations/locations.component';
 import { IndexComponent } from './components/index/index.component';
+import { FormLoginComponent } from './components/form_login/form_login.component';
 
 //import { AutocompleteOverviewExample } from './components/autocomplete-overview-example/autocomplete-overview-example';
 
@@ -22,7 +23,8 @@ const appRoutes : Routes = [
   {path: 'form_board/:boardId/:userId', component: FormBoardComponent},
   {path: 'boards/:id', component: BoardsComponent},
   {path: 'locations', component: LocationsComponent},
-  {path: 'index', component: IndexComponent}
+  {path: 'index', component: IndexComponent},
+  {path: 'form_login', component: FormLoginComponent}
 ];
 
 //Export Routes

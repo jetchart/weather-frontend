@@ -17,6 +17,14 @@ export class UserLocationsService{
         this.url = 'http://localhost:8080/api';
     }
 
+    login(username: string, password: string) : Observable<any> {
+      //let params =  JSON.stringify({ "username" : "andres", "password" : "12345" });
+      let params =  JSON.stringify({ username : username, password : password });
+      let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+      return this.http.post('http://localhost:8080/api/login', params, {headers: headers});
+    }
+
     saveLocation(userLocation: UserLocation): Observable<any>{
   		let params = JSON.stringify(userLocation);
   		let headers = new HttpHeaders().set('Content-Type','application/json');

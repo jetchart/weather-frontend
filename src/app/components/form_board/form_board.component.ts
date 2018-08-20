@@ -16,7 +16,7 @@ export class FormBoardComponent implements OnInit{
   public title : String;
   public name : String;
   public boardNew : Board;
-  public locationDeleteId : String;
+  public locationBoardDeleteId : String;
   public boardId : String;
   public boardLocations : BoardLocation[];
   public userId : String;
@@ -47,8 +47,8 @@ export class FormBoardComponent implements OnInit{
     form.reset();
   };
 
-  setLocationIdToDelete(locationId){
-    this.locationDeleteId = locationId;
+  setBoardLocationIdToDelete(boardLocationId){
+    this.locationBoardDeleteId = boardLocationId;
   }
 
   addLocation(locationIdNew){
@@ -59,13 +59,13 @@ export class FormBoardComponent implements OnInit{
     boardLocation.location.id = locationIdNew;
     this.saveBoardLocation(boardLocation);
     this.locationIdNew = "";
-    this.getBoardLocationsByBoardId();
   }
 
   saveBoardLocation(boardLocation : BoardLocation) {
     this._boardLocationsService.saveBoardLocation(boardLocation).subscribe(
       result => {
           console.log(result);
+          this.getBoardLocationsByBoardId();
       },
       error => {
           console.log(<any>error);
