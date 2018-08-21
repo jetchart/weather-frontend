@@ -45,8 +45,9 @@ export class AuthService {
     return this.http.post('http://localhost:8080/api/login', params, {headers: headers})
                     .pipe(map((loginData:LoginData) => {
                       console.log(loginData);
-                        this.saveUser(loginData.user);
-                        this.saveJwt(loginData.token);
+                      this.setUserOnLocalStorage(loginData);
+                      //this.saveJwt(loginData.token);
+                      //this.saveUser(loginData.user);
                       })
                     );
     //return this.http.post('http://localhost:8080/api/login', params, {headers: headers});
@@ -69,7 +70,7 @@ export class AuthService {
 
   private saveUser(user) {
     if(user) {
-      //localStorage.setItem("user", _usersService.getUserByUsername(user.username));
+      //localStorage.setItem("user", this.getUserByUsername(user.username));
       localStorage.setItem('auth_user', user.username);
     }
   }
@@ -77,15 +78,24 @@ export class AuthService {
   logout() {
     localStorage.removeItem('id_token');
     localStorage.removeItem('auth_user');
-    //localStorage.removeItem('user');
+    localStorage.removeItem('auth_userId');
   }
 
-  isAuth() {
-    if(localStorage.getItem('auth_user')) {
-      return true;
-    } else {
-      return false;
-    }
+  setUserOnLocalStorage(loginData){
+    localStorage.setItem('auth_user', loginData.user.username);
+    localStorage.setItem('id_token', loginData.token);
+    this.getUserByUsername(loginData.user.username)
+    .subscribe(
+      result => {
+        localStorage.setItem("auth_userId", result.id);
+      },
+      error => {
+        //throwError(error);
+      });
+  }
+
+  getUserByUsername(username): Observable<any>{
+    return this.http.get('http://localhost:8080/api/'+'users/username/'+username, {headers: this.getHeaders()});
   }
 
 }

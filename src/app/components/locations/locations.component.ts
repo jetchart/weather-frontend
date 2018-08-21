@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import {LocationsService} from "./locations.service";
 import { Location } from "./location";
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import {ErrorService} from "./../error/error.service";
 
 @Component({
   selector: 'locations',
@@ -14,7 +15,7 @@ export class LocationsComponent implements OnInit, OnDestroy{
   public locationInsertar : Location;
   public locationIdDelete : String;
 
-  constructor(public _locationsService: LocationsService,
+  constructor(public _errorService: ErrorService, public _locationsService: LocationsService,
               public _router: Router){
     this.title = "Locations";
     this.locationInsertar = new Location();
@@ -38,7 +39,7 @@ export class LocationsComponent implements OnInit, OnDestroy{
           this.locations = result;
       },
       error => {
-          console.log(<any>error);
+          this._errorService.handleError(error);
       });
     };
 
@@ -54,7 +55,7 @@ export class LocationsComponent implements OnInit, OnDestroy{
             this.getLocations();
         },
         error => {
-            console.log(<any>error);
+          this._errorService.handleError(error);
         });
       };
 
@@ -69,7 +70,7 @@ export class LocationsComponent implements OnInit, OnDestroy{
       			this.getLocations();
     		},
     		error => {
-    			console.log(<any>error);
+          this._errorService.handleError(error);
     		}
     	);
     };

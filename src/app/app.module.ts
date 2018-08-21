@@ -17,6 +17,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BoardsComponent } from './components/boards/boards.component';
 import { GlobalErrorHandlerService } from './components/auth/globalErrorHandlerService';
 import { ErrorHandler} from '@angular/core';
+import { ErrorComponent } from './components/error/error.component';
 //Material
 import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,7 +35,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     FooterComponent,
     BoardsComponent,
     FormBoardComponent,
-    FormLoginComponent
+    FormLoginComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

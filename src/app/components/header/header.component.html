@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
   <a class="navbar-brand" href="http://www.redbee.io/">  <img src="./assets/redbee.png" width="60px" height="60px"></a>
   <div *ngIf="auth_user">
-    <span style="color:white" >Logged: {{auth_user}}</span>
+    <span style="color:white" >User: {{auth_user}}</span>
   </div>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -15,7 +15,7 @@
         <a class="nav-link" routerLink="/users">Users</a>
       </li>
       <li class="navbar-nav ml-md-auto d-md-flex">
-        <a class="nav-link" routerLink="/users/boards">My boards</a>
+        <a class="nav-link" routerLink="/boards/{{auth_userId}}">My boards</a>
       </li>
       <li class="navbar-nav ml-md-auto d-md-flex">
         <a class="nav-link" routerLink="/locations">Locations</a>

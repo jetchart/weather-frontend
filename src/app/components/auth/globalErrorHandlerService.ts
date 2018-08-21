@@ -1,18 +1,33 @@
-import { Injectable, ErrorHandler } from '@angular/core';
+import { Injectable, Injector, ErrorHandler } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class GlobalErrorHandlerService implements ErrorHandler {
 
+  constructor(
+     private injector: Injector
+  ) { }
+
     handleError(error: any) {
-      console.error("ERROR: " + error);
+      const _router = this.injector.get(Router);
+
       if (error instanceof HttpErrorResponse) {
-          //Backend returns unsuccessful response codes such as 404, 500 etc.
-          console.error('Backend returned status code: ', error.status);
-          console.error('Response body:', error.message);
+          if (error.status == 401){
+              localStorage.setItem("error","You dont have permission");
+          }
+          if (error.status == 403){
+              localStorage.setItem("error","You dont have permission");
+          }
       } else {
-          //A client-side or network error occurred.
-          console.error('An error occurred:', error.message);
+          localStorage.setItem("error",error.message);
+
       }
+
+          //_router.navigate(["/error"]);
+          //setTimeout(() => _router.navigate(['/error']));
+          //setTimeout(() => _router.navigate(['/error'], { skipLocationChange: true}));
+          //return error.status;
+
     }
 }

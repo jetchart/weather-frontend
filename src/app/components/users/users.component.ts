@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {UsersService} from "./users.service";
+import {ErrorService} from "./../error/error.service";
 import { User } from "./user";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { timer, Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent } from "rxjs";
@@ -17,6 +18,7 @@ export class UsersComponent implements OnInit, OnDestroy{
   public users$: Observable<User[]>;
   public userIdDelete : String;
   constructor(public _usersService: UsersService,
+              public _errorService: ErrorService,
               public _router: Router){
     this.title = "Users";
     this.userInsert = new User();
@@ -38,7 +40,7 @@ export class UsersComponent implements OnInit, OnDestroy{
           this.users = result;
       },
       error => {
-        throwError(error);
+        this._errorService.handleError(error);
       });
     };
 
@@ -53,7 +55,7 @@ export class UsersComponent implements OnInit, OnDestroy{
             this.getUsers();
         },
         error => {
-            console.log(<any>error);
+          this._errorService.handleError(error);
         });
       };
 
@@ -71,7 +73,7 @@ export class UsersComponent implements OnInit, OnDestroy{
       			this.getUsers();
     		},
     		error => {
-    			console.log(<any>error);
+          this._errorService.handleError(error);
     		}
     	);
     };

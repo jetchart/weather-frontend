@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {LocationsService} from "../locations/locations.service";
 import { Location } from "../locations/location";
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import {ErrorService} from "./../error/error.service";
 
 @Component({
   selector: 'form_location',
@@ -13,7 +14,8 @@ export class FormLocationComponent implements OnInit{
   public locations : Location[];
   public locationInsert : Location;
   public id : String;
-  constructor(public _locationsService: LocationsService,
+  constructor(public _errorService: ErrorService,
+              public _locationsService: LocationsService,
               public _router: Router, public _route: ActivatedRoute){
     this.title = "Create location";
     this.id = this._route.snapshot.params['id'];
@@ -40,7 +42,7 @@ export class FormLocationComponent implements OnInit{
           this.locationInsert = result;
       },
       error => {
-          console.log(<any>error);
+          this._errorService.handleError(error);
       });
     };
 
@@ -51,7 +53,7 @@ export class FormLocationComponent implements OnInit{
           this._router.navigate(['/locations']);
       },
       error => {
-          console.log(<any>error);
+          this._errorService.handleError(error);
       });
     };
 

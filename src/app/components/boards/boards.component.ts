@@ -5,6 +5,7 @@ import { User } from "./../users/user";
 import { Board } from "./board";
 import { Location } from "./../locations/location";
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import {ErrorService} from "./../error/error.service";
 
 @Component({
   selector: 'app-boards',
@@ -17,7 +18,8 @@ export class BoardsComponent implements OnInit {
   public user : User;
   public title : String;
   public boardIdDelete : String;
-  constructor(public _usersService: UsersService,
+  constructor(public _errorService: ErrorService,
+              public _usersService: UsersService,
               public _boardsService: BoardsService,
               public _route: ActivatedRoute,
               public _router: Router) {
@@ -41,7 +43,7 @@ export class BoardsComponent implements OnInit {
           this.boards = result;
       },
       error => {
-          console.log(<any>error);
+          this._errorService.handleError(error);
       });
     };
 
@@ -52,7 +54,7 @@ export class BoardsComponent implements OnInit {
           this.title = "Boards of " + this.user.name + " " + this.user.surname;
       },
       error => {
-          console.log(<any>error);
+          this._errorService.handleError(error);
       });
     };
 
@@ -62,7 +64,7 @@ export class BoardsComponent implements OnInit {
           this.getBoardsByUserId();
       },
       error => {
-          console.log(<any>error);
+          this._errorService.handleError(error);;
       });
     };
 

@@ -7,6 +7,7 @@ import { User } from "../users/user";
 import { Board } from "./../boards/board";
 import { Location } from "./../locations/location";
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import {ErrorService} from "./../error/error.service";
 
 @Component({
   selector: 'form_board',
@@ -22,7 +23,8 @@ export class FormBoardComponent implements OnInit{
   public userId : String;
   public locationIdNew : String;
   public action : String = "NEW";
-  constructor(public _boardsService : BoardsService,
+  constructor(public _errorService: ErrorService,
+              public _boardsService : BoardsService,
               public _boardLocationsService : BoardLocationsService,
               public _usersService : UsersService,
               public _router: Router,
@@ -68,7 +70,7 @@ export class FormBoardComponent implements OnInit{
           this.getBoardLocationsByBoardId();
       },
       error => {
-          console.log(<any>error);
+          this._errorService.handleError(error);
       });
     };
 
@@ -79,7 +81,7 @@ export class FormBoardComponent implements OnInit{
           this.boardLocations = result;
       },
       error => {
-          console.log(<any>error);
+          this._errorService.handleError(error);
       });
     };
 
@@ -89,7 +91,7 @@ export class FormBoardComponent implements OnInit{
             this.getBoardLocationsByBoardId();
         },
         error => {
-            console.log(<any>error);
+          this._errorService.handleError(error);
         });
         return true;
       };
@@ -102,7 +104,7 @@ export class FormBoardComponent implements OnInit{
           this.setTitle();
       },
       error => {
-          console.log(<any>error);
+          this._errorService.handleError(error);
       });
     };
 
@@ -121,7 +123,7 @@ export class FormBoardComponent implements OnInit{
           }
       },
       error => {
-          console.log(<any>error);
+          this._errorService.handleError(error);
       });
     };
 
@@ -133,7 +135,7 @@ export class FormBoardComponent implements OnInit{
             return result;
         },
         error => {
-            console.log(<any>error);
+          this._errorService.handleError(error);
         });
       };
 

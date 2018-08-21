@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../users/users.service";
 import { User } from "../users/user";
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import {ErrorService} from "./../error/error.service";
 
 @Component({
   selector: 'form_user',
@@ -13,7 +14,8 @@ export class FormUserComponent implements OnInit{
   public users : User[];
   public userInsert : User;
   public id : String;
-  constructor(public _usersService: UsersService,
+  constructor(public _errorService: ErrorService,
+              public _usersService: UsersService,
               public _router: Router, public _route: ActivatedRoute){
     this.title = "Create user";
     this.id = this._route.snapshot.params['id'];
@@ -39,7 +41,7 @@ export class FormUserComponent implements OnInit{
           this.userInsert = result;
       },
       error => {
-          console.log(<any>error);
+          this._errorService.handleError(error);
       });
     };
 
@@ -50,7 +52,7 @@ export class FormUserComponent implements OnInit{
           this._router.navigate(['/users']);
       },
       error => {
-          console.log(<any>error);
+          this._errorService.handleError(error);
       });
     };
 
