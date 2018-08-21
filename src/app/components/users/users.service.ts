@@ -26,9 +26,8 @@ export class UsersService{
   	}
 
   	getUsers(): Observable<any>{
-  		return this.http.get(this.url+'users', {headers: this._authService.getHeaders()}).pipe(
-        catchError(e => throwError(e))
-      );
+  		return this.http.get(this.url+'users', {headers: this._authService.getHeaders()});
+
   	}
 
   	getUser(id): Observable<any>{

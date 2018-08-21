@@ -3,7 +3,7 @@ import {UsersService} from "./users.service";
 import {ErrorService} from "./../error/error.service";
 import { User } from "./user";
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { timer, Observable, Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent } from "rxjs";
+import { Subscription, timer, Observable } from "rxjs";
 import {throwError} from 'rxjs';
 
 @Component({
@@ -17,6 +17,7 @@ export class UsersComponent implements OnInit, OnDestroy{
   public userInsert : User;
   public users$: Observable<User[]>;
   public userIdDelete : String;
+  public getUsersSubscription : Subscription;
   constructor(public _usersService: UsersService,
               public _errorService: ErrorService,
               public _router: Router){
@@ -26,10 +27,14 @@ export class UsersComponent implements OnInit, OnDestroy{
 
   ngOnInit(){
     this.getUsers();
+    this.getUsersSubscription = timer(60000,60000).subscribe(t => {
+        this.getUsers();
+    });
   };
 
   ngOnDestroy(){
-
+    console.log("Destroyed: getUsersSubscription");
+    this.getUsersSubscription.unsubscribe();
   };
 
   getUsers() {

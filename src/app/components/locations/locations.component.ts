@@ -3,6 +3,7 @@ import {LocationsService} from "./locations.service";
 import { Location } from "./location";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import {ErrorService} from "./../error/error.service";
+import { Subscription, timer, Observable } from "rxjs";
 
 @Component({
   selector: 'locations',
@@ -14,6 +15,7 @@ export class LocationsComponent implements OnInit, OnDestroy{
   public locations : Location[];
   public locationInsertar : Location;
   public locationIdDelete : String;
+  public getLocationsSubscription : Subscription;
 
   constructor(public _errorService: ErrorService, public _locationsService: LocationsService,
               public _router: Router){
@@ -23,9 +25,14 @@ export class LocationsComponent implements OnInit, OnDestroy{
 
   ngOnInit(){
     this.getLocations();
+    this.getLocationsSubscription = timer(60000,60000).subscribe(t => {
+        this.getLocations();
+    });
   };
 
   ngOnDestroy(){
+    console.log("Destroyed: getLocationsSubscription");
+    this.getLocationsSubscription.unsubscribe();
   };
 
   setLocationIdDelete(locationId){

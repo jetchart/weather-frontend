@@ -8,6 +8,7 @@ import { Board } from "./../boards/board";
 import { Location } from "./../locations/location";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import {ErrorService} from "./../error/error.service";
+import { Subscription, timer, Observable } from "rxjs";
 
 @Component({
   selector: 'form_board',
@@ -23,6 +24,8 @@ export class FormBoardComponent implements OnInit{
   public userId : String;
   public locationIdNew : String;
   public action : String = "NEW";
+  public getBoardLocationsByBoardIdSubscription : Subscription;
+
   constructor(public _errorService: ErrorService,
               public _boardsService : BoardsService,
               public _boardLocationsService : BoardLocationsService,
@@ -34,14 +37,17 @@ export class FormBoardComponent implements OnInit{
     this.userId = this._route.snapshot.params['userId'];
     this.boardNew = new Board();
     this.getUser(this.userId);
+  }
+
+  ngOnInit(){
     if (this.boardId != null && this.boardId != "0"){
       this.action = "UPDATE";
       this.getBoard();
       this.getBoardLocationsByBoardId();
+      this.getBoardLocationsByBoardIdSubscription = timer(60000,60000).subscribe(t => {
+          this.getBoardLocationsByBoardId();
+      });
     }
-  }
-
-  ngOnInit(){
   };
 
   onSubmit(form){
