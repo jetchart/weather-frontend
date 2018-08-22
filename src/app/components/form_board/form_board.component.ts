@@ -3,12 +3,16 @@ import {BoardsService} from "../boards/boards.service";
 import {UsersService} from "../users/users.service";
 import {BoardLocation} from "../boardLocations/boardLocation";
 import {BoardLocationsService} from "../boardLocations/boardLocations.service";
+import {LocationsService} from "../locations/locations.service";
 import { User } from "../users/user";
 import { Board } from "./../boards/board";
 import { Location } from "./../locations/location";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import {ErrorService} from "./../error/error.service";
 import { Subscription, timer, Observable } from "rxjs";
+//Autocomplete
+import {FormControl} from '@angular/forms';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'form_board',
@@ -26,9 +30,15 @@ export class FormBoardComponent implements OnInit{
   public action : String = "NEW";
   public getBoardLocationsByBoardIdSubscription : Subscription;
 
+  //Autocomplete
+  public myControl : FormControl;
+  public filteredOptions: Observable<Location[]>;
+  public options : Location[];
+
   constructor(public _errorService: ErrorService,
               public _boardsService : BoardsService,
               public _boardLocationsService : BoardLocationsService,
+              public _locationsService : LocationsService,
               public _usersService : UsersService,
               public _router: Router,
               public _route: ActivatedRoute){
@@ -48,6 +58,14 @@ export class FormBoardComponent implements OnInit{
           this.getBoardLocationsByBoardId();
       });
     }
+    //Autocomplete
+    this.getLocations();
+    this.myControl = new FormControl();
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(val => this.filter(val))
+      );
   };
 
   onSubmit(form){
@@ -60,13 +78,15 @@ export class FormBoardComponent implements OnInit{
   }
 
   addLocation(locationIdNew){
-    let boardLocation = new BoardLocation();
-    boardLocation.board = new Board();
-    boardLocation.board.id = this.boardId;
-    boardLocation.location = new Location();
-    boardLocation.location.id = locationIdNew;
-    this.saveBoardLocation(boardLocation);
-    this.locationIdNew = "";
+    if (locationIdNew != ""){
+      let boardLocation = new BoardLocation();
+      boardLocation.board = new Board();
+      boardLocation.board.id = this.boardId;
+      boardLocation.location = new Location();
+      boardLocation.location.id = locationIdNew;
+      this.saveBoardLocation(boardLocation);
+      this.locationIdNew = "";
+    }
   }
 
   saveBoardLocation(boardLocation : BoardLocation) {
@@ -149,4 +169,28 @@ export class FormBoardComponent implements OnInit{
         this.title = "Board: " + this.boardNew.name;
       }
 
+      getLocations(){
+        this._locationsService.getLocations()
+        .subscribe(
+          result => {
+            console.log("Locations: " + result);
+              this.options = result;
+              return result;
+          },
+          error => {
+            this._errorService.handleError(error);
+          });
+        };
+
+        filter(val) {
+          this.locationIdNew = "";
+           if(this.options){
+           return this.options.filter(option=>
+            option.name.toLowerCase().includes(val.toLowerCase()));
+          }
+        }
+
+    selectLocationToAdd(id){
+      this.locationIdNew = id;
+    }
   }

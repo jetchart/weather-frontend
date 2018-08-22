@@ -19,9 +19,10 @@ import { GlobalErrorHandlerService } from './components/auth/globalErrorHandlerS
 import { ErrorHandler} from '@angular/core';
 import { ErrorComponent } from './components/error/error.component';
 //Material
-import { MatInputModule, MatButtonModule, MatSelectModule, MatIconModule, MatToolbarModule, MatSidenavModule, MatListModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from '@angular/cdk/layout';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule, MatInputModule } from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -44,15 +45,10 @@ import { LayoutModule } from '@angular/cdk/layout';
     HttpClientModule,
     FormsModule,
     //Material
-    BrowserAnimationsModule,
     MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatIconModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    BrowserAnimationsModule
   ],
   providers: [
     appRoutingProviders,

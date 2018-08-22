@@ -45,11 +45,27 @@
     </div>-->
 
   <br>
+  <!--
   <div>
     <input type="text"  [(ngModel)]="locationIdNew" required />
     <button class="btn btn-light" (click)="addLocation(locationIdNew)">Add location</button>
   </div>
-</div>
+  </div>
+-->
+
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input type="text" placeholder="Location name" aria-label="Number"  matInput [formControl]="myControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" >
+        <mat-option *ngFor="let option of filteredOptions | async" (click)="selectLocationToAdd(option.id)" [value]="option.name">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    &nbsp;<button ng-disabled="locationIdNew == ''" class="btn btn-secondary" (click)="addLocation(locationIdNew)">Add location</button>
+  </form>
+
+
 
 <div>
   <a class="btn btn-primary btn-sm float-right" routerLink="/boards/{{userId}}">Back</a>
