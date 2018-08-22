@@ -1,3 +1,5 @@
+import {Forecast} from "./forecast";
+
 export class Location {
   id: string;
   name: string;
@@ -8,6 +10,7 @@ export class Location {
   visibility: string;
   temperature: string;
   text: string;
+  forecasts : Forecast[];
   createAt: string;
   updateAt: string;
 }

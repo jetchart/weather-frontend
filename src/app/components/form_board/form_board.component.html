@@ -28,7 +28,7 @@
             <div class="card-body">
               <h5 class="card-title">{{boardLocation.location.text}}</h5>
               <p><img src="./assets/{{boardLocation.location.text}}.png"> &nbsp; <b>{{boardLocation.location.temperature}}°<sup>c</sup></b> </p>
-              <button (click)="show(location.id)" class="card-link btn btn-secondary">Open</button>
+              <button (click)="setForecasts(boardLocation.location)" data-toggle="modal" data-target="#detailModal" class="card-link btn btn-secondary">More</button>
               <button (click)="setBoardLocationIdToDelete(boardLocation.id)" data-toggle="modal" data-target="#deleteModal" class="card-link btn btn-secondary">Delete</button>
             </div>
           </div>
@@ -48,6 +48,7 @@
     &nbsp;<button ng-disabled="locationIdNew == ''" class="btn btn-secondary" (click)="addLocation(locationIdNew)">Add location</button>
   </form>
 
+<!-- Delete modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -67,7 +68,43 @@
     </div>
   </div>
 </div>
+<!-- Detail modal -->
+<div class="modal fade bd-example-modal-lg" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailModalLabel">Extended forecast in {{locationExtended.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="height: 16rem;" *ngFor="let forecast of forecasts">
+              <div class="card" style="width: 14rem;">
+                <div class="card-header"><b>{{forecast.day}}&nbsp;{{forecast.date}}</b></div>
+                <div class="card-body">
+                  <h5 class="card-title">{{forecast.text}}</h5>
+                  <p><img src="./assets/{{forecast.text}}.png"></p>
+                  <p>
+                    <b>Low:</b> {{forecast.low}}°<sup>c</sup>&nbsp;&nbsp;
+                    <b>High:</b> {{forecast.high}}°<sup>c</sup>
+                  </p>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
+
+</div>
+
+
 
 <hr>
 

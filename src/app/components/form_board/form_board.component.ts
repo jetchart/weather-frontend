@@ -7,6 +7,7 @@ import {LocationsService} from "../locations/locations.service";
 import { User } from "../users/user";
 import { Board } from "./../boards/board";
 import { Location } from "./../locations/location";
+import { Forecast } from "./../locations/forecast";
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import {ErrorService} from "./../error/error.service";
 import { Subscription, timer, Observable } from "rxjs";
@@ -22,7 +23,9 @@ export class FormBoardComponent implements OnInit{
   public title : String;
   public name : String;
   public boardNew : Board;
+  public forecasts : Forecast[];
   public locationBoardDeleteId : String;
+  public locationExtended : Location;
   public boardId : String;
   public boardLocations : BoardLocation[];
   public userId : String;
@@ -192,5 +195,10 @@ export class FormBoardComponent implements OnInit{
 
     selectLocationToAdd(id){
       this.locationIdNew = id;
+    }
+
+    setForecasts(locationExtended : Location){
+      this.locationExtended = locationExtended;
+      this.forecasts = locationExtended.forecasts;
     }
   }
