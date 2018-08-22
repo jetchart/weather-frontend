@@ -3,22 +3,22 @@
 <form class="form-group" #locationForm="ngForm" (ngSubmit)="onSubmit(locationForm)">
 
   <p>
-    <label for="name">Name</label>
-    <input flex class="form-control" type="text" name="name" #name="ngModel" [(ngModel)]="locationInsert.name" required />
+    <mat-form-field class="example-full-width">
+      <input class="form-control" type="text" placeholder="Name" aria-label="Number" #name="ngModel" name="name" matInput [(ngModel)]="locationInsert.name" required>
+    </mat-form-field>
     <span class="form_error" *ngIf="name.touched && !name.valid">
       Name is required
     </span>
   </p>
-
   <p>
-    <label for="woeid">Woeid</label>
-    <input class="form-control" type="text" name="woeid" #woeid="ngModel" [(ngModel)]="locationInsert.woeid" required />
+    <mat-form-field class="example-full-width">
+      <input class="form-control" type="text" placeholder="Woeid" aria-label="Number" #woeid="ngModel" name="woeid" matInput [(ngModel)]="locationInsert.woeid" required>
+    </mat-form-field>
     <span class="form_error" *ngIf="woeid.touched && !woeid.valid">
       Woeid is required
     </span>
   </p>
-
-  <input class="btn btn-primary" type="submit" value="Enviar" [disabled]="!locationForm.form.valid" />
+  <input class="btn btn-secondary" type="submit" value="Save" [disabled]="!locationForm.form.valid" />
 </form>
 
 <div>

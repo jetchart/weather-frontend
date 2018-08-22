@@ -26,6 +26,10 @@ export class LocationsService{
   		return this.http.get(this.url+'locations', {headers: this._authService.getHeaders()});
   	}
 
+    getLocationsEnabled(): Observable<any>{
+      return this.http.get(this.url+'locations/enabled', {headers: this._authService.getHeaders()});
+    }
+
     getLocationsByNombreContaining(nombre): Observable<any>{
       return this.http.get(this.url+'/locations/nombre/' + nombre, {headers: this._authService.getHeaders()});
     }

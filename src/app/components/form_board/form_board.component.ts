@@ -59,7 +59,7 @@ export class FormBoardComponent implements OnInit{
       });
     }
     //Autocomplete
-    this.getLocations();
+    this.getLocationsEnabled();
     this.myControl = new FormControl();
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
@@ -169,8 +169,8 @@ export class FormBoardComponent implements OnInit{
         this.title = "Board: " + this.boardNew.name;
       }
 
-      getLocations(){
-        this._locationsService.getLocations()
+      getLocationsEnabled(){
+        this._locationsService.getLocationsEnabled()
         .subscribe(
           result => {
             console.log("Locations: " + result);

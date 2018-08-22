@@ -22,7 +22,10 @@ import { ErrorComponent } from './components/error/error.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule, MatInputModule } from '@angular/material';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,11 @@ import { MatAutocompleteModule, MatInputModule } from '@angular/material';
     MatInputModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule,
+MatCardModule,
+MatFormFieldModule,
+MatButtonModule
   ],
   providers: [
     appRoutingProviders,

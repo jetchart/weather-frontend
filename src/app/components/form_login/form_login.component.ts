@@ -38,7 +38,7 @@ export class FormLoginComponent implements OnInit{
     error => {
         console.log("LOGIN FAIL!");
         console.log(<any>error);
-        this.error = "Error al intentar hacer login";
+        this.error = "Error trying to login";
     });
   }
 

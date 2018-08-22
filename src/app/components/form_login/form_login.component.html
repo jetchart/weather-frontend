@@ -1,27 +1,43 @@
 <h1>{{title}}</h1>
+
+<hr>
+
 <div *ngIf="error" class="alert alert-danger" role="alert">
   {{error}}
 </div>
-<form class="form-group" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
 
-  <p>
-    <label for="username">Username</label>
-    <input class="form-control" type="text" name="username" #username="ngModel" [(ngModel)]="user.username" required />
-    <span class="form_error" *ngIf="username.touched && !username.valid">
-      Username is required
-    </span>
-  </p>
-  <p>
-    <label for="password">Password</label>
-    <input class="form-control" type="password" name="password" #password="ngModel" [(ngModel)]="user.password" required />
-    <span class="form_error" *ngIf="password.touched && !password.valid">
-      Password is required
-    </span>
-  </p>
+<div class="row">
+  <div class=".col-xs-6">
+    <mat-card>
+      <mat-card-content>
+        <form class="form-group" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
 
+          <p>
+            <mat-form-field class="example-full-width">
+              <input class="form-control" type="text" placeholder="Username" aria-label="Number" #username="ngModel" name="username" matInput [(ngModel)]="user.username" required>
+            </mat-form-field>
+            <span class="form_error" *ngIf="username.touched && !username.valid">
+              Username is required
+            </span>
+          </p>
 
-  <input class="btn btn-primary" type="submit" value="Login" [disabled]="!userForm.form.valid" />
-</form>
+          <p>
+            <mat-form-field class="example-full-width">
+              <input class="form-control" type="password" placeholder="Password" aria-label="Number" #password="ngModel" name="password" matInput [(ngModel)]="user.password" required>
+            </mat-form-field>
+            <span class="form_error" *ngIf="password.touched && !password.valid">
+              Password is required
+            </span>
+          </p>
+
+          <input class="btn btn-secondary" type="submit" value="Login" [disabled]="!userForm.form.valid" />
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<hr>
 
 <div>
   <a class="btn btn-primary btn-sm float-right" routerLink="/index">Back</a>

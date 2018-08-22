@@ -1,34 +1,41 @@
 <h1>{{title}}</h1>
 
+<hr>
+
 <form class="form-group" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
 
-
   <p>
-    <label for="name">Name</label>
-    <input flex class="form-control" type="text" name="name" #name="ngModel" [(ngModel)]="userInsert.name" required />
+    <mat-form-field class="example-full-width">
+      <input class="form-control" type="text" placeholder="Name" aria-label="Number" #name="ngModel" name="name" matInput [(ngModel)]="userInsert.name" required>
+    </mat-form-field>
     <span class="form_error" *ngIf="name.touched && !name.valid">
       Name is required
     </span>
   </p>
 
   <p>
-    <label for="surname">Surname</label>
-    <input class="form-control" type="text" name="surname" #surname="ngModel" [(ngModel)]="userInsert.surname" required />
+    <mat-form-field class="example-full-width">
+      <input class="form-control" type="text" placeholder="Surname" aria-label="Number" #surname="ngModel" name="surname" matInput [(ngModel)]="userInsert.surname" required>
+    </mat-form-field>
     <span class="form_error" *ngIf="surname.touched && !surname.valid">
       Surname is required
     </span>
   </p>
 
   <p>
-    <label for="username">Username</label>
-    <input class="form-control" type="text" name="username" #username="ngModel" [(ngModel)]="userInsert.username" required />
+    <mat-form-field class="example-full-width">
+      <input class="form-control" type="text" placeholder="Username" aria-label="Number" #username="ngModel" name="username" matInput [(ngModel)]="userInsert.username" required>
+    </mat-form-field>
     <span class="form_error" *ngIf="username.touched && !username.valid">
       Username is required
     </span>
   </p>
 
-  <input class="btn btn-primary" type="submit" value="Guardar" [disabled]="!userForm.form.valid" />
+  <input class="btn btn-secondary" type="submit" value="Guardar" [disabled]="!userForm.form.valid" />
+
 </form>
+
+<hr>
 
 <div>
   <a class="btn btn-primary btn-sm float-right" routerLink="/users">Back</a>

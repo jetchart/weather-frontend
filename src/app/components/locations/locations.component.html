@@ -1,14 +1,15 @@
 <h1>{{title}}</h1>
-<div *ngIf="1==2">
-<table class="table table-striped table-dark">
-  <thead>
+<hr>
+
+<div *ngIf="1==1">
+<table class="table">
+  <thead class="thead-dark">
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Woeid</th>
-      <th scope="col">Temperature</th>
-      <th scope="col">Text</th>
-      <th scope="col">Publication date</th>
-      <th scope="col">Creation date</th>
+      <th scope="col">Temp.</th>
+      <th scope="col">Weather</th>
+      <th scope="col">Enabled</th>
       <th scope="col">Actions</th>
     </tr>
 
@@ -18,34 +19,18 @@
       <td>{{location.woeid}}</td>
       <td>{{location.temperature}}°<sup>c</sup></td>
       <td>{{location.text}} <img src="./assets/{{location.text}}.png" ></td>
-      <td>{{location.pubDate}}</td>
-      <td>{{location.createAt}}</td>
-      <td><button class="btn btn-light" (click)="updateLocation(location.id)">Edit</button> &nbsp; <button data-toggle="modal" data-target="#deleteModal" class="btn btn-light"(click)="setLocationIdDelete(location.id)">Delete</button></td>
+      <td>{{location.enabled}}</td>
+      <td>
+        <!--<button class="btn btn-link" (click)="updateLocation(location.id)">Edit</button> &nbsp; -->
+        <button data-toggle="modal" data-target="#deleteModal" class="btn btn-link"(click)="setLocationIdDelete(location.id)">Delete</button>
+      </td>
     </tr>
   </tbody>
 </table>
 </div>
 
-<div class="row">
-  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let location of locations">
-    <div class="card" style="width: 12rem;">
-      <div class="card-body">
-        <h5 class="card-title">{{location.name}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted"><b>{{location.temperature}}°<sup>c</sup></b> &nbsp; {{location.text}}</h6>
-        <p class="card-text"><img src="./assets/{{location.text}}.png" ></p>
-        <button (click)="updateLocation(location.id)" class="card-link btn btn-link">Edit</button>
-        <button (click)="setLocationIdDelete(location.id)" class="card-link btn btn-link">Delete</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div>
-  <a class="nav-link" routerLink="/form_location/0">Add location</a>
-</div>
-
-<div>
-  <a class="btn btn-primary btn-sm float-right" routerLink="/index">Back</a>
+  <a class="btn btn-secondary" routerLink="/form_location/0">Add location</a>
 </div>
 
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -66,4 +51,9 @@
       </div>
     </div>
   </div>
+</div>
+
+<hr>
+<div>
+  <a class="btn btn-primary btn-sm float-right" routerLink="/index">Back</a>
 </div>
