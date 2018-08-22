@@ -1,5 +1,7 @@
 <h1>{{title}}</h1>
 
+<hr>
+
 <form class="form-group" #locationForm="ngForm" (ngSubmit)="onSubmit(locationForm)">
 
   <p>
@@ -21,6 +23,8 @@
   <p><small>Don't know WOEID? Find out <a target="_blank" href="http://www.woeidlookup.com/">here</a>!</small></p>
   <input class="btn btn-secondary" type="submit" value="Save" [disabled]="!locationForm.form.valid" />
 </form>
+
+<hr>
 
 <div>
   <a class="btn btn-primary btn-sm float-right" routerLink="/locations">Back</a>
