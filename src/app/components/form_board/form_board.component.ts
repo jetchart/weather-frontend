@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {BoardsService} from "../boards/boards.service";
 import {UsersService} from "../users/users.service";
 import {BoardLocation} from "../boardLocations/boardLocation";
@@ -19,7 +19,7 @@ import {map, startWith} from 'rxjs/operators';
   selector: 'form_board',
   templateUrl: './form_board.component.html'
 })
-export class FormBoardComponent implements OnInit{
+export class FormBoardComponent implements OnInit, OnDestroy{
   public title : String;
   public name : String;
   public boardNew : Board;
@@ -34,7 +34,7 @@ export class FormBoardComponent implements OnInit{
   public getBoardLocationsByBoardIdSubscription : Subscription;
 
   //Autocomplete
-  public myControl : FormControl;
+  public autocompleteControl : FormControl;
   public filteredOptions: Observable<Location[]>;
   public options : Location[];
 
@@ -63,18 +63,30 @@ export class FormBoardComponent implements OnInit{
     }
     //Autocomplete
     this.getLocationsEnabled();
-    this.myControl = new FormControl();
-    this.filteredOptions = this.myControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(val => this.filter(val))
-      );
+    this.initAutoComplete();
   };
+
+  ngOnDestroy(){
+    if (this.boardId != null && this.boardId != "0"){
+      console.log("Destroyed: getBoardLocationsByBoardIdSubscription");
+      this.getBoardLocationsByBoardIdSubscription.unsubscribe();
+    }
+  };
+
 
   onSubmit(form){
     this.saveBoard();
     form.reset();
   };
+
+  initAutoComplete(){
+    this.autocompleteControl = new FormControl();
+    this.filteredOptions = this.autocompleteControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(val => this.filter(val))
+      );
+  }
 
   setBoardLocationIdToDelete(boardLocationId){
     this.locationBoardDeleteId = boardLocationId;
@@ -85,10 +97,13 @@ export class FormBoardComponent implements OnInit{
       let boardLocation = new BoardLocation();
       boardLocation.board = new Board();
       boardLocation.board.id = this.boardId;
+      //boardLocation.board.user = new User();
+      //boardLocation.board.user.id = this.userId;
       boardLocation.location = new Location();
       boardLocation.location.id = locationIdNew;
       this.saveBoardLocation(boardLocation);
       this.locationIdNew = "";
+      this.initAutoComplete();
     }
   }
 

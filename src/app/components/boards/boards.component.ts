@@ -24,6 +24,7 @@ export class BoardsComponent implements OnInit {
               public _route: ActivatedRoute,
               public _router: Router) {
     this.userId = this._route.snapshot.params['id'];
+    console.log("Estoy en BOARDS: " + this.userId);
     this.getBoardsByUserId();
     this.getUser();
   }

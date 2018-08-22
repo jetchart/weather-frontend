@@ -18,7 +18,7 @@
       <td>{{location.name}}</td>
       <td>{{location.woeid}}</td>
       <td>{{location.temperature}}°<sup>c</sup></td>
-      <td>{{location.text}} <img src="./assets/{{location.text}}.png" ></td>
+      <td>{{location.text}} <img src="./assets/{{location.text}}.png" onerror="this.src='./assets/error.png'"></td>
       <td>{{location.enabled}}</td>
       <td>
         <!--<button class="btn btn-link" (click)="updateLocation(location.id)">Edit</button> &nbsp; -->
