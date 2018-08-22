@@ -14,7 +14,7 @@
   </p>
   <p>
     <mat-form-field class="example-full-width">
-      <input class="form-control" type="text" placeholder="Woeid" aria-label="Number" #woeid="ngModel" name="woeid" matInput [(ngModel)]="locationInsert.woeid" required>
+      <input class="form-control" type="number" placeholder="Woeid" aria-label="Number" #woeid="ngModel" name="woeid" matInput [(ngModel)]="locationInsert.woeid" required>
     </mat-form-field>
     <span class="form_error" *ngIf="woeid.touched && !woeid.valid">
       Woeid is required
