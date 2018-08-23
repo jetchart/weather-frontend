@@ -23,8 +23,8 @@ export class ErrorService{
           }
           if (error.status == 403){
               localStorage.setItem("error","You don't have permission. Please login.");
-              this._authService.logout();
-              this._router.navigate(["/index"]);
+              //this._authService.logout();
+              //this._router.navigate(["/index"]);
           }
       }
       this._router.navigate(["/error"]);

@@ -101,8 +101,6 @@ export class FormBoardComponent implements OnInit, OnDestroy{
       let boardLocation = new BoardLocation();
       boardLocation.board = new Board();
       boardLocation.board.id = this.boardId;
-      //boardLocation.board.user = new User();
-      //boardLocation.board.user.id = this.userId;
       boardLocation.location = new Location();
       boardLocation.location.id = locationIdNew;
       this.saveBoardLocation(boardLocation);
@@ -220,5 +218,5 @@ export class FormBoardComponent implements OnInit, OnDestroy{
       this.locationExtended = locationExtended;
       this.forecasts = locationExtended.forecasts;
     }
-    
+
   }

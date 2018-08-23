@@ -18,22 +18,21 @@
 <div *ngIf="action!='NEW'">
 
   <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="height: 16rem;" *ngFor="let boardLocation of boardLocations">
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="height: 19rem;" *ngFor="let boardLocation of boardLocations">
         <div class="card" style="width: 14rem;">
-          <div class="card bg-light" style="max-width: 18rem;">
+          <div class="card bg-light" style="max-width: 18rem;" >
             <div class="card-header"><b>{{boardLocation.location.name}}</b></div>
             <div class="card-body">
               <h5 class="card-title">{{boardLocation.location.text}}</h5>
-              <p><img src="./assets/{{boardLocation.location.text}}.png" onerror="this.src='./assets/error.png'" width="64" height="64"> &nbsp; <b>Temp: {{boardLocation.location.temperature}}°<sup>c</sup></b> </p>
-              <button (click)="setForecasts(boardLocation.location)" data-toggle="modal" data-target="#detailModal" class="card-link btn btn-secondary">More</button>
-              <button (click)="setBoardLocationIdToDelete(boardLocation.id)" data-toggle="modal" data-target="#deleteModal" class="card-link btn btn-secondary">Delete</button>
+              <p><img src="./assets/{{boardLocation.location.text}}.png" onerror="this.src='./assets/error.png'" width="60" height="60"> &nbsp; <b>Temp: {{boardLocation.location.temperature}}°<sup>c</sup></b> </p>
+              <p><small><b>Humidity: </b>{{boardLocation.location.humidity}}% &nbsp;<b>Visibility: </b>{{boardLocation.location.visibility}}</small></p>
+              <button (click)="setForecasts(boardLocation.location)" data-toggle="modal" data-target="#detailModal" class="card-link btn btn-secondary btn-sm">Extended</button>
+              <button (click)="setBoardLocationIdToDelete(boardLocation.id)" data-toggle="modal" data-target="#deleteModal" class="card-link btn btn-secondary btn-sm">Delete</button>
             </div>
           </div>
         </div>
       </div>
   </div>
-
-<br>
 
   <form class="example-form">
     <mat-form-field class="example-full-width">
@@ -79,7 +78,7 @@
       </div>
       <div class="modal-body">
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="height: 16rem;" *ngFor="let forecast of forecasts">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" style="height: 18rem;" *ngFor="let forecast of forecasts">
               <div class="card" style="width: 14rem;">
                 <div class="card-header"><b>{{forecast.day}}&nbsp;{{forecast.date}}</b></div>
                 <div class="card-body">
