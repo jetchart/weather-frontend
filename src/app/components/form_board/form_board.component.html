@@ -24,7 +24,7 @@
             <div class="card-header"><b>{{boardLocation.location.name}}</b></div>
             <div class="card-body">
               <h5 class="card-title">{{boardLocation.location.text}}</h5>
-              <p><img src="./assets/{{boardLocation.location.text}}.png" onerror="this.src='./assets/error.png'"> &nbsp; <b>{{boardLocation.location.temperature}}°<sup>c</sup></b> </p>
+              <p><img src="./assets/{{boardLocation.location.text}}.png" onerror="this.src='./assets/error.png'" width="64" height="64"> &nbsp; <b>Temp: {{boardLocation.location.temperature}}°<sup>c</sup></b> </p>
               <button (click)="setForecasts(boardLocation.location)" data-toggle="modal" data-target="#detailModal" class="card-link btn btn-secondary">More</button>
               <button (click)="setBoardLocationIdToDelete(boardLocation.id)" data-toggle="modal" data-target="#deleteModal" class="card-link btn btn-secondary">Delete</button>
             </div>
@@ -33,16 +33,18 @@
       </div>
   </div>
 
+<br>
+
   <form class="example-form">
     <mat-form-field class="example-full-width">
-      <input [ngClass]="{'text-success':locationIdNew}" type="text" placeholder="Location name" aria-label="Number"  matInput [formControl]="autocompleteControl" [matAutocomplete]="auto">
+      <input [ngClass]="{'text-success':locationIdNew}" type="text" placeholder="Location name to add" aria-label="Number"  matInput [formControl]="autocompleteControl" [matAutocomplete]="auto">
       <mat-autocomplete #auto="matAutocomplete" >
         <mat-option *ngFor="let option of filteredOptions | async" (click)="selectLocationToAdd(option.id)" [value]="option.name">
           {{option.name}}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>
-    &nbsp;<button ng-disabled="locationIdNew == ''" class="btn btn-secondary" (click)="addLocation(locationIdNew)">Add location</button>
+    &nbsp;<button ng-disabled="locationIdNew == ''" class="btn btn-secondary" (click)="addLocation(locationIdNew)">+</button>
   </form>
 
 <!-- Delete modal -->
@@ -82,7 +84,7 @@
                 <div class="card-header"><b>{{forecast.day}}&nbsp;{{forecast.date}}</b></div>
                 <div class="card-body">
                   <h5 class="card-title">{{forecast.text}}</h5>
-                  <p><img src="./assets/{{forecast.text}}.png" onerror="this.src='./assets/error.png'"></p>
+                  <p><img src="./assets/{{forecast.text}}.png" onerror="this.src='./assets/error.png'" width="64" height="64"></p>
                   <p>
                     <b>Low:</b> {{forecast.low}}°<sup>c</sup>&nbsp;&nbsp;
                     <b>High:</b> {{forecast.high}}°<sup>c</sup>
@@ -100,8 +102,6 @@
 </div>
 
 </div>
-
-
 
 <hr>
 

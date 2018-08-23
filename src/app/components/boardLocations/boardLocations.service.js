@@ -16,16 +16,16 @@ var BoardLocationsService = /** @class */ (function () {
     }
     BoardLocationsService.prototype.getBoardLocationsByBoardId = function (boardId) {
         var headers = new http_1.HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.get(this.url + '/boards/' + boardId + "/locations", { headers: headers });
+        return this.http.get(this.url + 'boards/' + boardId + "/locations", { headers: headers });
     };
     BoardLocationsService.prototype.saveBoard = function (boardLocation) {
         var params = JSON.stringify(boardLocation);
         var headers = new http_1.HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.post(this.url + '/boards/locations/', params, { headers: headers });
+        return this.http.post(this.url + 'boards/locations/', params, { headers: headers });
     };
     BoardLocationsService.prototype.deleteBoardLocationByBoardId = function (boardId) {
         var headers = new http_1.HttpHeaders().set('Content-Type', 'application/json');
-        return this.http["delete"](this.url + '/boards/locations/' + boardId, { headers: headers });
+        return this.http["delete"](this.url + 'boards/locations/' + boardId, { headers: headers });
     };
     BoardLocationsService = __decorate([
         core_1.Injectable({

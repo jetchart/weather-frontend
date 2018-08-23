@@ -6,6 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'weather-frontend';
-  urlBackend = "http://localhost:8080/";
+
+  public title : String;
+
+  constructor(){
+    this.title = 'weather-frontend';
+  }
+
 }

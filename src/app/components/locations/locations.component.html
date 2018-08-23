@@ -18,10 +18,9 @@
       <td>{{location.name}}</td>
       <td>{{location.woeid}}</td>
       <td>{{location.temperature}}°<sup>c</sup></td>
-      <td>{{location.text}} <img src="./assets/{{location.text}}.png" onerror="this.src='./assets/error.png'"></td>
+      <td><img src="./assets/{{location.text}}.png" onerror="this.src='./assets/error.png'" width="30" height="30"> &nbsp; {{location.text}}</td>
       <td>{{location.enabled}}</td>
       <td>
-        <!--<button class="btn btn-link" (click)="updateLocation(location.id)">Edit</button> &nbsp; -->
         <button data-toggle="modal" data-target="#deleteModal" class="btn btn-link"(click)="setLocationIdDelete(location.id)">Delete</button>
       </td>
     </tr>

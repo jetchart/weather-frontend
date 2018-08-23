@@ -5,14 +5,10 @@ import { Router } from '@angular/router';
 @Injectable()
 export class GlobalErrorHandlerService implements ErrorHandler {
 
-  constructor(
-     private injector: Injector
-  ) { }
+  constructor(private injector: Injector) { }
 
     handleError(error: any) {
       const _router = this.injector.get(Router);
-
       localStorage.setItem("error",error.message);
-
     }
 }

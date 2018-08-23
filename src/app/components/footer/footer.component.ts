@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   styleUrls : ['./footer.component.css']
 })
 export class FooterComponent {
-  public autor : String;
+  public author : String;
   constructor(){
-    this.autor = "JME";
+    this.author = "JME";
   }
 }

@@ -1,3 +1,19 @@
 <h1>{{title}}</h1>
 
 <hr>
+
+<div *ngIf="welcome" class="alert alert-success" role="alert">
+  {{welcome}}
+</div>
+
+<h3>
+Do you want to know the weather?
+</h3>
+
+<h5>
+Just have to create your board and add the locations you want
+</h5>
+
+<p *ngIf="!user">
+  <a routerLink="/form_login">Sign in</a> now and start enjoying!
+</p>

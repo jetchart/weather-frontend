@@ -28,17 +28,18 @@ export class FormLoginComponent implements OnInit{
   };
 
   login(){
-    console.log(this.user.username + " " + this.user.password);
     this._authService.login(this.user.username,this.user.password).subscribe(
     (result:LoginData) => {
         console.log("LOGIN OK!");
-        console.log(result);
         this._router.navigate(['/index']);
     },
-    error => {
+    (error:any) => {
         console.log("LOGIN FAIL!");
-        console.log(<any>error);
-        this.error = "Error trying to login";
+        if (error.status == 401){
+          this.error = 'Username or password incorrect';
+        }else{
+          this.error = error.message;
+        }
     });
   }
 

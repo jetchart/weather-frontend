@@ -220,4 +220,5 @@ export class FormBoardComponent implements OnInit, OnDestroy{
       this.locationExtended = locationExtended;
       this.forecasts = locationExtended.forecasts;
     }
+    
   }

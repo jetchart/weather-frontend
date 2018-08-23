@@ -8,21 +8,15 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   selector: 'error',
   templateUrl: './error.component.html'
 })
-export class ErrorComponent implements OnInit, DoCheck {
+export class ErrorComponent implements OnInit {
   public error : String;
   constructor(public _route: ActivatedRoute,
               public _router: Router) {
-
   }
 
   ngOnInit() {
     this.error = localStorage.getItem("error");
     localStorage.removeItem("error");
   }
-
-  ngDoCheck() {
-
-  }
-
 
 }
