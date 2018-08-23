@@ -12,22 +12,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     handleError(error: any) {
       const _router = this.injector.get(Router);
 
-      if (error instanceof HttpErrorResponse) {
-          if (error.status == 401){
-              localStorage.setItem("error","You dont have permission");
-          }
-          if (error.status == 403){
-              localStorage.setItem("error","You dont have permission");
-          }
-      } else {
-          localStorage.setItem("error",error.message);
-
-      }
-
-          //_router.navigate(["/error"]);
-          //setTimeout(() => _router.navigate(['/error']));
-          //setTimeout(() => _router.navigate(['/error'], { skipLocationChange: true}));
-          //return error.status;
+      localStorage.setItem("error",error.message);
 
     }
 }

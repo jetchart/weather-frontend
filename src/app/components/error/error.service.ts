@@ -14,6 +14,7 @@ export class ErrorService{
     }
 
     handleError(error){
+      localStorage.setItem("error",error.message);
       if (error instanceof HttpErrorResponse) {
           if (error.status == 401){
               localStorage.setItem("error","You dont have permission to access to page");
@@ -21,8 +22,6 @@ export class ErrorService{
           if (error.status == 403){
               localStorage.setItem("error","You dont have permission. Please login.");
           }
-      } else {
-          localStorage.setItem("error",error.message);
       }
       this._router.navigate(["/error"]);
     }

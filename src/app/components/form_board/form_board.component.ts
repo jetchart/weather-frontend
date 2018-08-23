@@ -56,10 +56,7 @@ export class FormBoardComponent implements OnInit, OnDestroy{
     if (this.boardId != null && this.boardId != "0"){
       this.action = "UPDATE";
       this.getBoard();
-      this.getBoardLocationsByBoardId();
-      this.getBoardLocationsByBoardIdSubscription = timer(60000,60000).subscribe(t => {
-          this.getBoardLocationsByBoardId();
-      });
+      this.initSubscription();
     }
     //Autocomplete
     this.getLocationsEnabled();
@@ -86,6 +83,13 @@ export class FormBoardComponent implements OnInit, OnDestroy{
         startWith(''),
         map(val => this.filter(val))
       );
+  }
+
+  initSubscription(){
+    this.getBoardLocationsByBoardId();
+    this.getBoardLocationsByBoardIdSubscription = timer(60000,60000).subscribe(t => {
+        this.getBoardLocationsByBoardId();
+    });
   }
 
   setBoardLocationIdToDelete(boardLocationId){
@@ -160,8 +164,8 @@ export class FormBoardComponent implements OnInit, OnDestroy{
             this.boardNew = result;
             this.boardId = this.boardNew.id
             this.setTitle();
+            this.initSubscription();
             this._router.navigate(['/form_board',this.boardId,this.userId]);
-
           }else{
             this.getBoardLocationsByBoardId();
           }

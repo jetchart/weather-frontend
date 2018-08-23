@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'weather-frontend';
+  urlBackend = "http://localhost:8080/";
 }
