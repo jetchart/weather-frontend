@@ -5,7 +5,6 @@ export class Location {
   name: string;
   woeid: string;
   pubDate: string;
-  chill: string;
   humidity: string;
   visibility: string;
   temperature: string;

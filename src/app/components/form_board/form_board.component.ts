@@ -87,7 +87,7 @@ export class FormBoardComponent implements OnInit, OnDestroy{
 
   initSubscription(){
     this.getBoardLocationsByBoardId();
-    this.getBoardLocationsByBoardIdSubscription = timer(60000,60000).subscribe(t => {
+    this.getBoardLocationsByBoardIdSubscription = timer(44000,44000).subscribe(t => {
         this.getBoardLocationsByBoardId();
     });
   }
